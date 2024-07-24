@@ -1,23 +1,13 @@
-/* 개별 날짜 셀의 테두리를 더 두껍게 만듭니다 */
-.fc .fc-daygrid-day {
-  border: 1px solid #beb2b2; /* 색상과 두께를 원하는 대로 조정하세요 */
-}
 /* 이벤트 셀의 테두리를 더 두껍게 만듭니다 */
 .fc .fc-daygrid-event {
   border: 1px solid #c2bfbf; /* 색상과 두께를 원하는 대로 조정하세요 */
 }
 
 /* 요일 헤더의 테두리를 더 두껍게 만듭니다 */
-.fc .fc-col-header-cell {
-  border: 1px solid #c9c2c2; /* 색상과 두께를 원하는 대로 조정하세요 */
-  border-top: 1px solid #c7c2c2; /* 상단 테두리 */
-  border-bottom: 1px solid #c0baba; /* 하단 테두리 */
-  background-color: #f0f0f0; /* 배경색도 원하는 대로 조정할 수 있습니다 */
-}
 
 /* 일요일 날짜: 빨간색 */
 .fc-day-sun a {
-  color: pink;
+  color: black;
 }
 
 /* 토요일 날짜: 파란색 */
@@ -48,6 +38,7 @@
   justify-content: center;
   font-family: "Ownglyph_UNZ-Rg";
   background-color: white;
+  margin-left: 20px;
 }
 
 .calendar-controls button {
@@ -55,7 +46,6 @@
   color: white;
   border: none;
   padding: 10px 20px;
-  margin: 0 5px;
   margin-top: 10px;
   border-radius: 5px;
   cursor: pointer;
@@ -93,3 +83,6 @@
   font-family: "Ownglyph_UNZ-Rg";
   font-size: 25px;
 }
+
+/* .fc-header-toolbar .fc-toolbar-chunk:first-child {
+  margin-left: 0px; /* 원하는 마진 값으로 변경 */
