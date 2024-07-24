@@ -17,7 +17,7 @@
 
 /* 일요일 날짜: 빨간색 */
 .fc-day-sun a {
-  color: red;
+  color: pink;
 }
 
 /* 토요일 날짜: 파란색 */
@@ -37,19 +37,10 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-  margin-left: 20px;
-}
-
-.fullbutto {
-  position: relative;
-  width: 100%;
-  align-items: center;
-  text-align: right;
-  top: 40px;
+  background-color: white;
 }
 
 .custom-calendar-container {
-  position: relative;
   width: 90%;
   align-content: center;
   text-align: center;
