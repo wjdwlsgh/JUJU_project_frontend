@@ -1,0 +1,114 @@
+.mypage {
+  background-color: #fff3ee;
+  width: 100%;
+  height: 100%;
+  padding: 0%;
+  margin: 0%;
+}
+
+.home-button {
+  background-color: #b8c9aa93;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: "Ownglyph_UNZ-Rg";
+  font-size: 25px;
+  margin: 10px;
+}
+
+.home-button:hover {
+  background-color: #969b92;
+}
+
+.save-button {
+  background-color: #e7cbcbac;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: "Ownglyph_UNZ-Rg";
+  font-size: 25px;
+  margin: 10px;
+}
+
+.save-button:hover {
+  background-color: #e2c1c1;
+}
+
+#mypage-top {
+  /* margin-top: 1%; */
+  margin-bottom: 2%;
+  height: 7%;
+  background-color: #cab6a887;
+  /* align-content: center; */
+  align-items: center;
+  display: flex;
+  width: 100%;
+}
+
+.mypage-table {
+  border: 10px hidden;
+  border-radius: 10px;
+  width: 60%;
+  /* height: 10%; */
+  margin: auto;
+}
+
+.mypage-th {
+  width: 20%;
+  border: 5px solid #fff3ee;
+  border-radius: 20px;
+  padding: 0%;
+  background-color: #ffe8d6;
+  font-family: "Ownglyph_UNZ-Rg";
+  font-size: 25px;
+  font-weight: 300;
+}
+
+.mypage-div {
+  width: 100%;
+  border: 5px solid #fff3ee;
+  border-radius: 20px;
+  padding: 10px;
+  background-color: #dbe4cd;
+}
+
+.mypage-top-left {
+  width: 50%;
+
+  /* border-radius: 30px; */
+  border: none;
+  font-size: 40px;
+  display: flex;
+  padding: 6px;
+  /* background-color: #cab6a8; */
+  background-color: transparent;
+  /* border: 4px double #ddbf8c; */
+  font-family: "Cafe24Meongi-W-v1.0";
+  margin-left: 20px;
+}
+
+.mypage-top-left:hover {
+  color: white;
+}
+
+.mypage-top-right {
+  width: 50%;
+  text-align: right;
+  margin-right: 20px;
+  font-family: "Ownglyph_UNZ-Rg";
+  font-size: 23px;
+  color: rgb(163, 142, 142);
+}
+
+/* .mypage-top-right-logo {
+  text-align: ;
+} */
+
+mypage-div-div {
+  display: flex;
+  width: 100%;
+}
