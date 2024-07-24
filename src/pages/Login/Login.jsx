@@ -94,14 +94,14 @@ function Login() {
             <button
               type="button"
               id="Login_button2"
-              onClick={() => handleNavigate("/Account")}
+              onClick={() => handleNavigate("/api/Account")}
             >
               회원가입
             </button>
             <button
               type="button"
               id="Login_button3"
-              onClick={() => handleNavigate("/Find")}
+              onClick={() => handleNavigate("/api/Find")}
             >
               비밀번호 찾기
             </button>

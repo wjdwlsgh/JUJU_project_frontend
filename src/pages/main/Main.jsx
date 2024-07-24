@@ -9,10 +9,10 @@ const Main = ({ profilePicture, nickname }) => {
   return (
     <div className="Mainbody">
       <div className="menu_wrapper">
-        <div className="setting-icon">
-          <Home />
-        </div>
         <div className="left_container1">
+          <div className="setting-icon">
+            <Home />
+          </div>
           <div className="profile-info">
             {profilePicture ? (
               <img

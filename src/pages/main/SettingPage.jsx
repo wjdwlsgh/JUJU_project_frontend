@@ -32,7 +32,7 @@ const SettingPage = ({ setProfilePicture, setNickname }) => {
   };
 
   const handleHomeClick = () => {
-    navigate("/main");
+    navigate("/api/main");
   };
 
   return (
