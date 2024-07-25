@@ -8,6 +8,9 @@ import Clock from "../../components/Todo/Clock";
 import "../../components/main/full/full.css";
 
 const Main = ({ profilePicture, nickname }) => {
+  // fetch("http://localhost:4000/api/todo")
+  //   .then((response) => response.json())
+  //   .then((data) => console.log(data));
   return (
     <div className="Mainbody">
       <div className="menu_wrapper">
