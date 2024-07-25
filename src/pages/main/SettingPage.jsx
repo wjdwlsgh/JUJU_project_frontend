@@ -5,6 +5,7 @@ import ProfilePicture from "../../components/Setting/ProfilePicture";
 import Nickname from "../../components/Setting/Nickname";
 import ChangePassword from "../../components/Setting/ChangePassword";
 import mainImage from "../../assets/imgs/main.png";
+import homeImage from "../../assets/imgs/home.png";
 import "./Main.css";
 import "./SettingPage.css";
 
@@ -80,6 +81,11 @@ const SettingPage = ({ setProfilePicture, setNickname }) => {
           저장
         </button> */}
         <button className="home-button" onClick={handleHomeClick}>
+          <img
+            src={homeImage}
+            alt="설정 아이콘"
+            style={{ width: "30px", height: "25px" }}
+          />{" "}
           홈으로
         </button>
       </div>

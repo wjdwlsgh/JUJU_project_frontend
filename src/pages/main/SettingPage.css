@@ -1,27 +1,50 @@
 .mypage {
-  background-color: #fff3ee;
+  /* background-color: #fff3ee; */
+  background-color: #fdf8f6;
+
   width: 100%;
   height: 100%;
   padding: 0%;
   margin: 0%;
 }
 
+.mypage-table {
+  /* border: 7px solid #fff3ee; */
+  border-radius: 10px;
+  width: 40%;
+  /* height: 10%; */
+  margin: auto;
+  /* box-shadow: 40px 30px #aab697a7; */
+  box-shadow: 30px 30px 40px rgb(236, 211, 191);
+}
+
 .home-button {
   background-color: #b8c9aa93;
   color: white;
-  padding: 10px 20px;
+  padding: 20px 25px;
   border: none;
-  border-radius: 5px;
+  border-radius: 50%;
   cursor: pointer;
   font-family: "Ownglyph_UNZ-Rg";
   font-size: 25px;
-  margin: 10px;
+  margin-top: 80px;
+
+  /* float: left; */
+  box-shadow: 5px 5px 5px #969b92;
+  transition-duration: 0.6s;
 }
 
 .home-button:hover {
-  background-color: #969b92;
+  background-color: #90ad7cb4;
 }
 
+.home-button:active {
+  margin-left: 5px;
+  margin-top: 5px;
+  box-shadow: none;
+}
+
+/* 
 .save-button {
   background-color: #e7cbcbac;
   color: white;
@@ -36,44 +59,44 @@
 
 .save-button:hover {
   background-color: #e2c1c1;
-}
+} */
 
 #mypage-top {
   /* margin-top: 1%; */
   margin-bottom: 2%;
-  height: 7%;
-  background-color: #cab6a887;
+  height: 8%;
+  /* background-color: #cab6a887; */
+  background-color: #e3cab887;
+
   /* align-content: center; */
   align-items: center;
   display: flex;
   width: 100%;
 }
 
-.mypage-table {
-  border: 10px hidden;
-  border-radius: 10px;
-  width: 60%;
-  /* height: 10%; */
-  margin: auto;
-}
-
 .mypage-th {
   width: 20%;
-  border: 5px solid #fff3ee;
-  border-radius: 20px;
-  padding: 0%;
-  background-color: #ffe8d6;
-  font-family: "Ownglyph_UNZ-Rg";
+  /* border: 3px solid #fff3ee; */
+  border-radius: 8px;
+  padding: 0px;
+  background-color: #ffe8d6d3;
+  /* box-shadow: 10px 10px #c39f84; */
+
+  font-family: "Ownglyph_ryuttung-Rg";
   font-size: 25px;
   font-weight: 300;
+  color: rgba(125, 109, 109, 0.857);
 }
 
 .mypage-div {
   width: 100%;
-  border: 5px solid #fff3ee;
-  border-radius: 20px;
-  padding: 10px;
-  background-color: #dbe4cd;
+  /* border: 3px solid #fff3ee; */
+  border-radius: 5px;
+  padding: 0px;
+  /* background-color: #dbe4cd; */
+  background-color: #dbe4cdd0;
+
+  /* box-shadow: 10px 10px #aab697c1; */
 }
 
 .mypage-top-left {
@@ -81,14 +104,15 @@
 
   /* border-radius: 30px; */
   border: none;
-  font-size: 40px;
+  font-size: 50px;
+  color: rgb(90, 61, 61);
   display: flex;
   padding: 6px;
   /* background-color: #cab6a8; */
   background-color: transparent;
   /* border: 4px double #ddbf8c; */
   font-family: "Cafe24Meongi-W-v1.0";
-  margin-left: 20px;
+  margin-left: 30px;
 }
 
 .mypage-top-left:hover {
@@ -100,7 +124,7 @@
   text-align: right;
   margin-right: 20px;
   font-family: "Ownglyph_UNZ-Rg";
-  font-size: 23px;
+  font-size: 25px;
   color: rgb(163, 142, 142);
 }
 
