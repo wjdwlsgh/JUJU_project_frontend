@@ -6,17 +6,23 @@ const port = 8080;
 // CORS 설정
 app.use(
   cors({
-    origin: "http://localhost:3000", // 클라이언트의 출처
-    methods: ["GET", "POST", "PUT"], // 허용할 HTTP 메서드
-    allowedHeaders: ["Content-Type"], // 허용할 헤더
+    origin: "*", // 모든 출처 허용, 배포 시에는 필요한 출처만 허용하도록 설정
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type"],
   })
 );
 
 // JSON 본문을 파싱합니다.
 app.use(express.json());
 
-let id = 1; // Initialize id
-const todolist = []; // Sample in-memory data store
+// 메모리 내 데이터 저장소 및 ID 관리
+let idCounter = 1;
+const todolist = [];
+
+// 기본 경로 처리
+app.get("/", (req, res) => {
+  res.send("Hello, this is the backend server for the ToDo app!");
+});
 
 // GET /api/todo 라우트
 app.get("/api/todo", (req, res) => {
@@ -32,7 +38,7 @@ app.post("/api/todo", (req, res) => {
   }
 
   const newTodo = {
-    id: id++,
+    id: idCounter++,
     title,
     start,
     end,
@@ -40,8 +46,7 @@ app.post("/api/todo", (req, res) => {
   };
 
   todolist.push(newTodo);
-
-  return res.status(201).json(newTodo);
+  res.status(201).json(newTodo);
 });
 
 // PUT /api/todo/:id 라우트 (이벤트 업데이트)
@@ -67,7 +72,20 @@ app.put("/api/todo/:id", (req, res) => {
     todolist[todoIndex].color = color;
   }
 
-  return res.json(todolist[todoIndex]);
+  res.json(todolist[todoIndex]);
+});
+
+// DELETE /api/todo/:id 라우트 (이벤트 삭제)
+app.delete("/api/todo/:id", (req, res) => {
+  const { id } = req.params;
+  const todoIndex = todolist.findIndex((todo) => todo.id === parseInt(id));
+
+  if (todoIndex === -1) {
+    return res.status(404).json({ error: "Todo not found" });
+  }
+
+  todolist.splice(todoIndex, 1);
+  res.status(204).send();
 });
 
 app.listen(port, () => {

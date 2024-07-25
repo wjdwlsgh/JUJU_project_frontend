@@ -99,21 +99,13 @@ class Full extends Component {
   };
 
   handleEventClick = (arg) => {
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, "0");
-    const day = String(now.getDate()).padStart(2, "0");
-    const hours = String(now.getHours()).padStart(2, "0");
-    const minutes = String(now.getMinutes()).padStart(2, "0");
-    const currentDateTime = `${year}-${month}-${day}T${hours}:${minutes}`;
-
     this.setState({
       isModal2Open: true,
       editingEventId: arg.event.id,
       newEvent: {
-        title: arg.event.title,
-        start: arg.event.startStr || currentDateTime,
-        end: arg.event.endStr || currentDateTime,
+        title: arg.event.title || "",
+        start: arg.event.startStr || "",
+        end: arg.event.endStr || "",
         color: arg.event.backgroundColor || "",
       },
     });
@@ -159,7 +151,7 @@ class Full extends Component {
       .then((response) => {
         console.log("Save success:", response.data);
         this.setState({
-          events: [...this.state.events, newEvent],
+          events: [...this.state.events, response.data], // 서버에서 반환된 데이터를 사용
           isModalOpen: false,
           newEvent: { title: "", start: "", end: "", color: "" },
         });
@@ -187,7 +179,7 @@ class Full extends Component {
 
     // 서버로 데이터 업데이트
     axios
-      .put(`http://localhost:4000/api/todo/${editingEventId}`, {
+      .put(`http://localhost:8080/api/todo/${editingEventId}`, {
         title: newEvent.title,
         start: newEvent.start,
         end: newEvent.end,
@@ -197,7 +189,7 @@ class Full extends Component {
         console.log("Update success:", response.data);
         this.setState({
           events: events.map((event) =>
-            event.id === editingEventId ? updatedEvent : event
+            event.id === editingEventId ? response.data : event
           ),
           isModal2Open: false,
           newEvent: { title: "", start: "", end: "", color: "" },
@@ -206,6 +198,41 @@ class Full extends Component {
       })
       .catch((error) => {
         console.error("Update error:", error);
+      });
+  };
+
+  handleDeleteEvent = () => {
+    const { editingEventId, events } = this.state;
+
+    if (!editingEventId) {
+      alert("삭제할 일정을 선택해 주세요.");
+      return;
+    }
+
+    // 서버로 데이터 삭제 요청
+    axios
+      .delete(`http://localhost:8080/api/todo/${editingEventId}`)
+      .then(() => {
+        console.log("Delete success");
+
+        // 상태 업데이트
+        this.setState(
+          (prevState) => ({
+            events: prevState.events.filter(
+              (event) => event.id !== editingEventId
+            ),
+            isModal2Open: false,
+            newEvent: { title: "", start: "", end: "", color: "" },
+            editingEventId: null,
+          }),
+          () => {
+            // 상태 업데이트 후 콜백에서 콘솔 로그
+            console.log("Updated events after delete:", this.state.events);
+          }
+        );
+      })
+      .catch((error) => {
+        console.error("Delete error:", error);
       });
   };
 
@@ -262,16 +289,12 @@ class Full extends Component {
               today: "Today",
             }}
             aspectRatio={2}
-            events={this.state.events.map((event) => ({
-              ...event,
-              backgroundColor: event.extendedProps.color || "blue",
-              title: event.title,
-            }))}
+            events={this.state.events}
             dateClick={this.handleDateClick}
             eventClick={this.handleEventClick}
             selectable={true}
             handleWindowResize={true}
-            className="custom-calendar"
+            eventClassNames={["custom-class"]} // 이벤트 클래스 이름을 정의
           />
         </div>
 
@@ -290,6 +313,7 @@ class Full extends Component {
             newEvent={this.state.newEvent}
             handleClose={this.handleCloseModal2}
             handleSave={this.handleSaveEvent2}
+            handleDelete={this.handleDeleteEvent}
             handleChange={this.handleInputChange}
             colorMap={this.state.colorMap}
           />
