@@ -7,7 +7,6 @@ import interactionPlugin from "@fullcalendar/interaction";
 import "./full.css";
 import Modal from "./modal";
 import Modal2 from "./modal2";
-import Clock from "../../Todo/Clock";
 
 class Full extends Component {
   constructor(props) {
@@ -49,9 +48,9 @@ class Full extends Component {
       this.calendarRef.current.getApi().updateSize();
     }
   };
-
+  //clickTimeout
   handleDateClick = (arg) => {
-    const { lastClickedDate, clickTimeout, isDoubleClick } = this.state;
+    const { lastClickedDate, isDoubleClick } = this.state;
 
     if (isDoubleClick) {
       this.setState({
@@ -183,9 +182,11 @@ class Full extends Component {
   render() {
     return (
       <div className="fullMain">
-        <div className="fullClock">
+        {/* <div className="fullClock">
           <Clock />
-        </div>
+        </div> */}
+        <div class="main-logo">JUJU-CALENDAR</div>
+        {/* <div class="main-top-line"></div> */}
         <div className="custom-calendar-container">
           <FullCalendar
             ref={this.calendarRef}

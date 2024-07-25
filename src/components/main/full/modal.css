@@ -14,14 +14,16 @@
 }
 
 .modal-content {
-  font-family: "Ownglyph_UNZ-Rg";
+  font-family: "Ownglyph_ryurue-Rg";
   font-size: 20px;
-  background-color: #f1d1d2;
+  background-color: #f9dddd;
   margin: 15% auto;
   padding: 20px;
-  border: 1px solid #888;
+  border: 7px ridge #e6b7b7;
+  border-radius: 10%;
   width: 30%;
   height: 70%;
+  position: fixed;
 }
 
 .close {
@@ -48,13 +50,13 @@
   width: 100%;
   height: 100%;
   margin-top: 5px; /* 입력 필드와 라벨 사이의 간격을 추가합니다 */
+  font-family: "Ownglyph_ryurue-Rg";
 }
 
 .col-form-label {
   display: flex;
   flex-direction: column;
   height: 100%;
-  font-family: "Ownglyph_UNZ-Rg";
   font-size: 30px;
 }
 
@@ -94,11 +96,10 @@
 .modal-buttons {
   text-align: center;
   margin: 10px;
-  font-family: "Ownglyph_UNZ-Rg";
 }
 
 .modal-buttons button {
-  background-color: #2c3e50;
+  background-color: #e6b7b7;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -106,8 +107,15 @@
   margin-top: 10px;
   border-radius: 5px;
   cursor: pointer;
-  font-family: "Ownglyph_UNZ-Rg";
+  /* font-family: "Ownglyph_UNZ-Rg"; */
+  font-family: "Ownglyph_ryuttung-Rg";
   font-size: 18px;
+}
+
+.modal-buttons button:hover {
+  border-color: #e6b7b7;
+  color: white;
+  box-shadow: 0 0.6em 0.6em -0.4em #ecd1d1;
 }
 
 /* .form-control {

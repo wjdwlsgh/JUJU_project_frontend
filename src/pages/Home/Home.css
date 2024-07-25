@@ -1,0 +1,24 @@
+.setting-icon {
+  width: 100%;
+  height: 100%;
+}
+
+.setting-icon-button {
+  border: none;
+  width: 100%;
+  height: 30%;
+  background-color: transparent;
+  /* justify-content: center; */
+  cursor: pointer;
+  font-family: "IM_Hyemin-Bold";
+}
+
+.setting-icon-button:hover {
+  font-size: large;
+}
+
+.setting-icon-img {
+  width: 30px;
+  height: 30px;
+  margin-right: 90%;
+}
