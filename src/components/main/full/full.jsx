@@ -8,6 +8,7 @@ import "./full.css";
 import Modal from "./modal";
 import Modal2 from "./modal2";
 import Clock from "../../Todo/Clock";
+import axios from "axios";
 
 class Full extends Component {
   constructor(props) {
@@ -38,6 +39,26 @@ class Full extends Component {
   componentDidMount() {
     this.handleResize(); // Initial resize
     window.addEventListener("resize", this.handleResize);
+
+    // 서버에서 데이터 가져오기
+    axios
+      .get("http://localhost:8080/api/todo")
+      .then((response) => {
+        const events = response.data.map((item) => ({
+          id: item.id,
+          title: item.title,
+          start: item.start || new Date().toISOString(),
+          end: item.end || new Date().toISOString(),
+          backgroundColor: item.color || "blue",
+          extendedProps: {
+            color: item.color || "blue",
+          },
+        }));
+        this.setState({ events });
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
   }
 
   componentWillUnmount() {
@@ -119,21 +140,35 @@ class Full extends Component {
       return;
     }
 
-    this.setState({
-      events: [
-        ...this.state.events,
-        {
-          id: new Date().getTime().toString(),
-          ...this.state.newEvent,
-          extendedProps: {
-            color: this.state.newEvent.color,
-          },
-        },
-      ],
-      isModalOpen: false,
-      newEvent: { title: "", start: "", end: "", color: "" },
-    });
+    const newEvent = {
+      id: new Date().getTime().toString(),
+      ...this.state.newEvent,
+      extendedProps: {
+        color: this.state.newEvent.color,
+      },
+    };
+
+    // 서버로 데이터 보내기
+    axios
+      .post("http://localhost:8080/api/todo", {
+        title: newEvent.title,
+        start: newEvent.start,
+        end: newEvent.end,
+        color: newEvent.color,
+      })
+      .then((response) => {
+        console.log("Save success:", response.data);
+        this.setState({
+          events: [...this.state.events, newEvent],
+          isModalOpen: false,
+          newEvent: { title: "", start: "", end: "", color: "" },
+        });
+      })
+      .catch((error) => {
+        console.error("Save error:", error);
+      });
   };
+
   handleSaveEvent2 = () => {
     const { editingEventId, newEvent, events } = this.state;
 
@@ -142,22 +177,36 @@ class Full extends Component {
       return;
     }
 
-    this.setState({
-      events: events.map((event) =>
-        event.id === editingEventId
-          ? {
-              ...event,
-              title: newEvent.title,
-              start: newEvent.start,
-              end: newEvent.end,
-              backgroundColor: newEvent.color,
-            }
-          : event
-      ),
-      isModal2Open: false,
-      newEvent: { title: "", start: "", end: "", color: "" },
-      editingEventId: null,
-    });
+    const updatedEvent = {
+      id: editingEventId,
+      ...newEvent,
+      extendedProps: {
+        color: newEvent.color,
+      },
+    };
+
+    // 서버로 데이터 업데이트
+    axios
+      .put(`http://localhost:4000/api/todo/${editingEventId}`, {
+        title: newEvent.title,
+        start: newEvent.start,
+        end: newEvent.end,
+        color: newEvent.color,
+      })
+      .then((response) => {
+        console.log("Update success:", response.data);
+        this.setState({
+          events: events.map((event) =>
+            event.id === editingEventId ? updatedEvent : event
+          ),
+          isModal2Open: false,
+          newEvent: { title: "", start: "", end: "", color: "" },
+          editingEventId: null,
+        });
+      })
+      .catch((error) => {
+        console.error("Update error:", error);
+      });
   };
 
   handleInputChange = (e) => {
