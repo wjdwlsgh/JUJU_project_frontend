@@ -1,8 +1,5 @@
 #Clock {
-  text-align: center;
-  font-size: 8rem;
-  /* 8배 */
-  margin: 10px;
-  color: white;
   font-family: "Ownglyph_UNZ-Rg";
+  margin-left: 20px;
+  font-size: 25px;
 }

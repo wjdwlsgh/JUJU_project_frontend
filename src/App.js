@@ -17,16 +17,16 @@ function App() {
       <Router>
         <Routes>
           <Route
-            path="/Main"
+            path="/api/Main"
             element={
               <Main profilePicture={profilePicture} nickname={nickname} />
             }
           />
           <Route path="/" element={<Login />} />
-          <Route path="/Find" element={<Find />} />
-          <Route path="/Account" element={<AccountForm />} />
+          <Route path="/api/Find" element={<Find />} />
+          <Route path="api/Account" element={<AccountForm />} />
           <Route
-            path="/SettingPage"
+            path="/api/SettingPage"
             element={
               <SettingPage
                 setProfilePicture={setProfilePicture}

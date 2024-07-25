@@ -27,7 +27,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/SettingPage");
+    navigate("/api/SettingPage");
   };
 
   return (
