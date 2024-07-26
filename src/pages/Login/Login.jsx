@@ -2,12 +2,9 @@ import React from "react";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-<<<<<<< HEAD
-import axios from "axios";
-=======
->>>>>>> 338eab33b2b08d861d0f66ccc85db7cd46113883
+import axios from "axios"; // Axios import
 
-function Login() {
+function Login({ setNickname }) {
   const navigate = useNavigate();
   const {
     register,
@@ -15,7 +12,10 @@ function Login() {
     formState: { isSubmitting, isSubmitted, errors },
   } = useForm();
 
-<<<<<<< HEAD
+  const handleNavigate = (path) => {
+    navigate(path);
+  };
+
   const onSubmit = async (data) => {
     try {
       const response = await axios.post(
@@ -23,27 +23,16 @@ function Login() {
         data
       );
       console.log("로그인 응답:", response.data); // 응답을 콘솔에 출력
+
+      // 로그인 성공 시 닉네임 업데이트
+      setNickname(response.data.user.nickname); // 서버 응답에 따라 적절한 필드로 설정
+
       alert("로그인 성공");
-
-      // 로그인 성공 후 사용자 정보를 로컬 스토리지에 저장
-      localStorage.setItem("user", JSON.stringify(response.data.user));
-
-      // 홈 페이지로 이동 (경로를 `/` 또는 `/main`으로 설정)
-
-      navigate("/api/main");
+      navigate("/main"); // 로그인 후 홈 페이지로 이동
     } catch (error) {
       console.error("로그인 실패:", error);
       alert("로그인 실패: " + (error.response?.data?.message || error.message));
     }
-=======
-  const handleNavigate = (path) => {
-    navigate(path);
-  };
-
-  const onSubmit = async (data) => {
-    await new Promise((r) => setTimeout(r, 1000));
-    alert(JSON.stringify(data));
->>>>>>> 338eab33b2b08d861d0f66ccc85db7cd46113883
   };
 
   return (
@@ -52,11 +41,6 @@ function Login() {
         <div className="Logintt2">JUJU__Calendar_</div>
         <div className="Logintt3">
           # 하 이 # juju # 코 린 이 들 # 쌈 @ 뽕 # 🐧 🐹 🐶 🐿️ 🐤
-<<<<<<< HEAD
-=======
-          {/* <button>🏠</button>
-          <button>❎</button> */}
->>>>>>> 338eab33b2b08d861d0f66ccc85db7cd46113883
         </div>
       </div>
       <div className="login-form-mom">
@@ -123,22 +107,14 @@ function Login() {
             <button
               type="button"
               id="Login_button2"
-<<<<<<< HEAD
-              onClick={() => navigate("/register")}
-=======
-              onClick={() => handleNavigate("/api/Account")}
->>>>>>> 338eab33b2b08d861d0f66ccc85db7cd46113883
+              onClick={() => handleNavigate("/account")}
             >
               회원가입
             </button>
             <button
               type="button"
               id="Login_button3"
-<<<<<<< HEAD
-              onClick={() => navigate("/find-password")}
-=======
-              onClick={() => handleNavigate("/api/Find")}
->>>>>>> 338eab33b2b08d861d0f66ccc85db7cd46113883
+              onClick={() => handleNavigate("/find")}
             >
               비밀번호 찾기
             </button>

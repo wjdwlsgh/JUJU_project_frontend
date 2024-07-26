@@ -1,13 +1,14 @@
 import React from "react";
 import "./JUJU_account.css";
-import axios from "axios"; // Axios import
-import { useForm } from "react-hook-form"; // react-hook-form import
+import axios from "axios";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 function AccountForm() {
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
@@ -18,11 +19,15 @@ function AccountForm() {
         "http://localhost:8080/api/register",
         data
       );
-      alert("회원가입 성공: " + JSON.stringify(response.data));
+      console.log("회원가입 응답:", response.data); // 응답 데이터 로그 출력
+
+      alert("회원가입 성공");
       navigate("/"); // 회원가입 후 로그인 페이지로 이동
     } catch (error) {
       console.error("회원가입 실패:", error);
-      alert("회원가입 실패: " + error.response?.data?.message || error.message);
+      alert(
+        "회원가입 실패: " + (error.response?.data?.message || error.message)
+      );
     }
   };
 
