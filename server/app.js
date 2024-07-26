@@ -18,10 +18,63 @@ app.use(express.json());
 // 메모리 내 데이터 저장소 및 ID 관리
 let idCounter = 1;
 const todolist = [];
+const users = [];
 
 // 기본 경로 처리
 app.get("/", (req, res) => {
   res.send("Hello, this is the backend server for the ToDo app!");
+});
+
+// 회원가입 라우트
+app.post("/api/register", (req, res) => {
+  console.log("회원가입 요청 데이터:", req.body); // 디버깅을 위한 로그
+  const { fullName, nickname, email, password1, password2, birthDate } =
+    req.body;
+
+  if (
+    !fullName ||
+    !nickname ||
+    !email ||
+    !password1 ||
+    !password2 ||
+    !birthDate
+  ) {
+    return res.status(400).json({ message: "모든 필드를 입력해야 합니다." });
+  }
+
+  if (password1 !== password2) {
+    return res.status(400).json({ message: "비밀번호가 일치하지 않습니다." });
+  }
+
+  const existingUser = users.find((u) => u.email === email);
+  if (existingUser) {
+    return res.status(400).json({ message: "이미 사용중인 이메일입니다." });
+  }
+
+  const newUser = {
+    fullName,
+    nickname,
+    email,
+    password: password1,
+    birthDate,
+  };
+
+  users.push(newUser);
+  res.status(201).json({ message: "회원가입 성공", user: newUser });
+});
+
+// 로그인 라우트
+app.post("/api/login", (req, res) => {
+  const { email, password } = req.body;
+
+  const user = users.find((u) => u.email === email && u.password === password);
+  if (!user) {
+    return res
+      .status(401)
+      .json({ message: "이메일 또는 비밀번호가 올바르지 않습니다." });
+  }
+
+  res.json({ message: "로그인 성공", user });
 });
 
 // GET /api/todo 라우트

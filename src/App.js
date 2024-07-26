@@ -10,7 +10,7 @@ import SettingPage from "./pages/main/SettingPage";
 
 function App() {
   const [profilePicture, setProfilePicture] = useState(null);
-  const [nickname, setNickname] = useState("홍윤이");
+  const [nickname, setNickname] = useState("");
 
   return (
     <div className="App">
@@ -29,6 +29,8 @@ function App() {
             path="/api/SettingPage"
             element={
               <SettingPage
+                profilePicture={profilePicture}
+                nickname={nickname}
                 setProfilePicture={setProfilePicture}
                 setNickname={setNickname}
               />
