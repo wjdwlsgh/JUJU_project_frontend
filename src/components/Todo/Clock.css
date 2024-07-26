@@ -1,0 +1,22 @@
+#Clock {
+  font-family: "bitbit";
+  /* margin-left: 5%; */
+  margin: 0px;
+  font-size: 25px;
+  font-weight: lighter;
+  color: rgba(255, 255, 255, 0.787);
+  /* background-color: #faeee9d0; */
+  border-radius: 5%;
+}
+
+.fullClock {
+  /* margin-left: 6%; */
+  background-color: #efdfd5;
+  margin-left: 7%;
+  padding: 5px;
+  width: 80%;
+  border-radius: 6%;
+  box-shadow: 3px 3px #d79999;
+  margin-top: 10%;
+  border: 3px solid #6c5d53;
+}
