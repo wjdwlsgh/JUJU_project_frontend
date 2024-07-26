@@ -6,8 +6,17 @@ const Modal2 = ({
   handleClose,
   handleSave,
   handleChange,
+  handleDelete, // 삭제 핸들러 추가
   colorMap,
 }) => {
+  // Helper function to format the date
+  const formatDate = (date) => {
+    if (!date) return ""; // Return empty string if no date is provided
+    // Convert to ISO string and extract date and time
+    const isoString = new Date(date).toISOString();
+    return isoString.slice(0, 16); // Extract 'yyyy-MM-ddThh:mm'
+  };
+
   return (
     <div className="modal2">
       <div className="modal-content2">
@@ -24,7 +33,7 @@ const Modal2 = ({
                 className="form-control"
                 id="title"
                 name="title"
-                value={newEvent.title}
+                value={newEvent.title || ""}
                 onChange={handleChange}
                 required
               />
@@ -36,7 +45,7 @@ const Modal2 = ({
                 className="form-control"
                 id="start"
                 name="start"
-                value={newEvent.start}
+                value={formatDate(newEvent.start)}
                 onChange={handleChange}
                 required
               />
@@ -48,9 +57,8 @@ const Modal2 = ({
                 className="form-control"
                 id="end"
                 name="end"
-                value={newEvent.end}
+                value={formatDate(newEvent.end)}
                 onChange={handleChange}
-                required
               />
             </label>
             <label htmlFor="color" className="col-form-label">
@@ -59,7 +67,7 @@ const Modal2 = ({
                 className="form-control"
                 id="color"
                 name="color"
-                value={newEvent.color}
+                value={newEvent.color || ""}
                 onChange={handleChange}
                 required
               >
@@ -74,6 +82,9 @@ const Modal2 = ({
             <div className="modal-buttons">
               <button type="button" onClick={handleSave}>
                 Save
+              </button>
+              <button type="button" onClick={handleDelete}>
+                Delete
               </button>
               <button type="button" onClick={handleClose}>
                 Cancel

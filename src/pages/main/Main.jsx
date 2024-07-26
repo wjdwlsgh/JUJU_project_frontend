@@ -6,7 +6,6 @@ import Full from "../../components/main/full/full";
 import Home from "../Home/Home";
 import Clock from "../../components/Todo/Clock";
 import "../../components/main/full/full.css";
-
 const Main = ({ profilePicture, nickname }) => {
   // fetch("http://localhost:4000/api/todo")
   //   .then((response) => response.json())
