@@ -7,7 +7,7 @@
 
 /* 일요일 날짜: 빨간색 */
 .fc-day-sun a {
-  color: black;
+  color: red;
 }
 
 /* 토요일 날짜: 파란색 */
@@ -19,7 +19,23 @@
 }
 
 .fullClock {
-  text-align: left;
+  /* margin-left: 6%; */
+  background-color: white;
+  text-align: center;
+  margin: 0 auto;
+  padding: 10px;
+  width: 70%;
+  border-radius: 5%;
+  box-shadow: 5px 5px #c2b7b1;
+  margin-top: 10%;
+}
+
+.fc-view-harness {
+  background-color: white;
+}
+
+.fc-scroller fc-scroller-liquid-absolute {
+  position: fixed;
 }
 
 .fullMain {
@@ -27,18 +43,20 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background-color: white;
+  /* background-color: white; */
+  background-color: #faeee9d0;
 }
 
 .custom-calendar-container {
   width: 90%;
-  align-content: center;
-  text-align: center;
-  flex: 1;
-  justify-content: center;
-  font-family: "Ownglyph_UNZ-Rg";
-  background-color: white;
-  margin-left: 20px;
+  height: 100%;
+  margin-left: 5%;
+  /* align-content: center; */
+  /* text-align: center; */
+  /* flex: 1; */
+  /* justify-content: center; */
+  /* font-family: "Ownglyph_UNZ-Rg"; */
+  font-family: "IM_Hyemin-Bold";
 }
 
 .calendar-controls button {
@@ -55,6 +73,8 @@
 .fc-toolbar-title {
   font-size: 20px; /* 원하는 폰트 사이즈로 변경 */
   font-weight: bold; /* 원하는 폰트 두께로 변경 */
+  /* font-family: "EF_jejudoldam"; */
+  margin: 0px;
 }
 
 .add-event-button {
@@ -86,3 +106,57 @@
 
 /* .fc-header-toolbar .fc-toolbar-chunk:first-child {
   margin-left: 0px; /* 원하는 마진 값으로 변경 */
+
+/* .main-top-line {
+  width: 90%;
+  height: 1%;
+  background-color: #eddacf;
+  margin-left: 5%;
+} */
+
+.main-logo {
+  font-size: 60px;
+  font-family: "Cafe24Meongi-W-v1.0";
+  /* font-family: "Cafe24Meongi-B-v1.0"; */
+  color: #b1907a;
+  /* text-shadow: 5px 5px #f5d6c1; */
+  margin-top: 1%;
+  margin-bottom: 1%;
+  text-shadow: 5px 5px #fffbf9;
+}
+
+.fc .fc-button-primary {
+  background-color: #e9ccc4;
+  border: 0.5px solid #c2b7b1;
+  color: white;
+}
+
+.fc .fc-button-primary:hover {
+  background-color: #df9f8e;
+  border-color: #e9ccc4;
+}
+
+.fc .fc-button-primary:not(:disabled).fc-button-active,
+.fc .fc-button-primary:not(:disabled):active {
+  background-color: #df9f8e;
+  border: 6px ridge #f9c2b2;
+  color: white;
+}
+
+.fc .fc-button-primary:not(:disabled).fc-button-active:focus,
+.fc .fc-button-primary:not(:disabled):active:focus {
+  box-shadow: none;
+}
+
+.fc .fc-button-primary:disabled {
+  background-color: #cdb9ad;
+  border-color: #baa193;
+  color: white;
+}
+
+.fc .fc-toolbar.fc-header-toolbar {
+  /* margin-bottom: 1.5em; */
+  background-color: #e0e4d5;
+  padding: 15px;
+  margin-bottom: 0px;
+}

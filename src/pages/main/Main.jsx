@@ -4,7 +4,8 @@ import "./Main.css";
 import mainImage from "../../assets/imgs/main.png";
 import Full from "../../components/main/full/full";
 import Home from "../Home/Home";
-
+import Clock from "../../components/Todo/Clock";
+import "../../components/main/full/full.css";
 const Main = ({ profilePicture, nickname }) => {
   // fetch("http://localhost:4000/api/todo")
   //   .then((response) => response.json())
@@ -13,9 +14,10 @@ const Main = ({ profilePicture, nickname }) => {
     <div className="Mainbody">
       <div className="menu_wrapper">
         <div className="left_container1">
-          <div className="setting-icon">
+          <div className="setting-icon-div">
             <Home />
           </div>
+
           <div className="profile-info">
             {profilePicture ? (
               <img
@@ -32,11 +34,16 @@ const Main = ({ profilePicture, nickname }) => {
                 style={{ width: "150px", height: "150px" }}
               />
             )}
+
+            <div className="nickname"> {nickname}님 </div>
           </div>
-          <div className="nickname"> {nickname}님 </div>
+
+          <div className="fullClock">
+            <Clock />
+          </div>
         </div>
+
         <div className="left_container2"></div>
-        <div className="left_container3"></div>
       </div>
 
       <main className="content">
