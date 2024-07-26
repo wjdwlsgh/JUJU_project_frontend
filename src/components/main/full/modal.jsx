@@ -91,9 +91,9 @@ const Modal = ({
               <button type="button" onClick={handleSave}>
                 Save
               </button>
-              <button type="button" onClick={handleClose}>
+              {/* <button type="button" onClick={handleClose}>
                 Cancel
-              </button>
+              </button> */}
             </div>
           </form>
         </div>

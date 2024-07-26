@@ -201,7 +201,7 @@ class Full extends Component {
   };
 
   handleDeleteEvent = () => {
-    const { editingEventId, events } = this.state;
+    const { editingEventId } = this.state;
 
     if (!editingEventId) {
       alert("삭제할 일정을 선택해 주세요.");
@@ -214,25 +214,27 @@ class Full extends Component {
       .then(() => {
         console.log("Delete success");
 
-        // 상태 업데이트
-        this.setState(
-          (prevState) => {
-            const updatedEvents = prevState.events.filter(
-              (event) => event.id !== editingEventId
-            );
-            return {
-              events: updatedEvents,
-              isModal2Open: false,
-              newEvent: { title: "", start: "", end: "", color: "" },
-              editingEventId: null,
-            };
+        // 서버에서 최신 이벤트 목록을 다시 요청하여 클라이언트 상태 업데이트
+        return axios.get("http://localhost:8080/api/todo");
+      })
+      .then((response) => {
+        const events = response.data.map((item) => ({
+          id: item.id,
+          title: item.title,
+          start: item.start || new Date().toISOString(),
+          end: item.end || new Date().toISOString(),
+          backgroundColor: item.color || "blue",
+          extendedProps: {
+            color: item.color || "blue",
           },
-          () => {
-            console.log("Updated events after delete:", this.state.events);
-            // 강제 렌더링 호출
-            this.calendarRef.current.getApi().render();
-          }
-        );
+        }));
+
+        this.setState({
+          events,
+          isModal2Open: false,
+          newEvent: { title: "", start: "", end: "", color: "" },
+          editingEventId: null,
+        });
       })
       .catch((error) => {
         console.error("Delete error:", error);
@@ -271,7 +273,7 @@ class Full extends Component {
         {/* <div className="fullClock">
           <Clock />
         </div> */}
-        <div class="main-logo">JUJU-CALENDAR</div>
+        <div className="main-logo">JUJU-CALENDAR</div>
         {/* <div class="main-top-line"></div> */}
         <div className="custom-calendar-container">
           <FullCalendar
