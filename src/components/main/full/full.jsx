@@ -217,17 +217,21 @@ class Full extends Component {
 
         // 상태 업데이트
         this.setState(
-          (prevState) => ({
-            events: prevState.events.filter(
+          (prevState) => {
+            const updatedEvents = prevState.events.filter(
               (event) => event.id !== editingEventId
-            ),
-            isModal2Open: false,
-            newEvent: { title: "", start: "", end: "", color: "" },
-            editingEventId: null,
-          }),
+            );
+            return {
+              events: updatedEvents,
+              isModal2Open: false,
+              newEvent: { title: "", start: "", end: "", color: "" },
+              editingEventId: null,
+            };
+          },
           () => {
-            // 상태 업데이트 후 콜백에서 콘솔 로그
             console.log("Updated events after delete:", this.state.events);
+            // 강제 렌더링 호출
+            this.calendarRef.current.getApi().render();
           }
         );
       })
@@ -235,6 +239,12 @@ class Full extends Component {
         console.error("Delete error:", error);
       });
   };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.events !== this.state.events) {
+      this.calendarRef.current.getApi().render();
+    }
+  }
 
   handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -264,6 +274,7 @@ class Full extends Component {
         </div>
         <div className="custom-calendar-container">
           <FullCalendar
+            key={this.state.events.length} // key 추가
             ref={this.calendarRef}
             plugins={[
               dayGridPlugin,
