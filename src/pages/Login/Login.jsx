@@ -2,7 +2,10 @@ import React from "react";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+<<<<<<< HEAD
 import axios from "axios";
+=======
+>>>>>>> 338eab33b2b08d861d0f66ccc85db7cd46113883
 
 function Login() {
   const navigate = useNavigate();
@@ -12,6 +15,7 @@ function Login() {
     formState: { isSubmitting, isSubmitted, errors },
   } = useForm();
 
+<<<<<<< HEAD
   const onSubmit = async (data) => {
     try {
       const response = await axios.post(
@@ -31,6 +35,15 @@ function Login() {
       console.error("로그인 실패:", error);
       alert("로그인 실패: " + (error.response?.data?.message || error.message));
     }
+=======
+  const handleNavigate = (path) => {
+    navigate(path);
+  };
+
+  const onSubmit = async (data) => {
+    await new Promise((r) => setTimeout(r, 1000));
+    alert(JSON.stringify(data));
+>>>>>>> 338eab33b2b08d861d0f66ccc85db7cd46113883
   };
 
   return (
@@ -39,6 +52,11 @@ function Login() {
         <div className="Logintt2">JUJU__Calendar_</div>
         <div className="Logintt3">
           # 하 이 # juju # 코 린 이 들 # 쌈 @ 뽕 # 🐧 🐹 🐶 🐿️ 🐤
+<<<<<<< HEAD
+=======
+          {/* <button>🏠</button>
+          <button>❎</button> */}
+>>>>>>> 338eab33b2b08d861d0f66ccc85db7cd46113883
         </div>
       </div>
       <div className="login-form-mom">
@@ -105,14 +123,22 @@ function Login() {
             <button
               type="button"
               id="Login_button2"
+<<<<<<< HEAD
               onClick={() => navigate("/register")}
+=======
+              onClick={() => handleNavigate("/api/Account")}
+>>>>>>> 338eab33b2b08d861d0f66ccc85db7cd46113883
             >
               회원가입
             </button>
             <button
               type="button"
               id="Login_button3"
+<<<<<<< HEAD
               onClick={() => navigate("/find-password")}
+=======
+              onClick={() => handleNavigate("/api/Find")}
+>>>>>>> 338eab33b2b08d861d0f66ccc85db7cd46113883
             >
               비밀번호 찾기
             </button>

@@ -18,13 +18,17 @@ app.use(express.json());
 // 메모리 내 데이터 저장소 및 ID 관리
 let idCounter = 1;
 const todolist = [];
+<<<<<<< HEAD
 const users = [];
+=======
+>>>>>>> 338eab33b2b08d861d0f66ccc85db7cd46113883
 
 // 기본 경로 처리
 app.get("/", (req, res) => {
   res.send("Hello, this is the backend server for the ToDo app!");
 });
 
+<<<<<<< HEAD
 // 회원가입 라우트
 app.post("/api/register", (req, res) => {
   console.log("회원가입 요청 데이터:", req.body); // 디버깅을 위한 로그
@@ -77,6 +81,8 @@ app.post("/api/login", (req, res) => {
   res.json({ message: "로그인 성공", user });
 });
 
+=======
+>>>>>>> 338eab33b2b08d861d0f66ccc85db7cd46113883
 // GET /api/todo 라우트
 app.get("/api/todo", (req, res) => {
   res.json(todolist);

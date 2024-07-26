@@ -1,5 +1,6 @@
 import React from "react";
 import "./JUJU_account.css";
+<<<<<<< HEAD
 import axios from "axios"; // Axios import
 import { useForm } from "react-hook-form"; // react-hook-form import
 import { useNavigate } from "react-router-dom";
@@ -30,6 +31,10 @@ function AccountForm() {
       );
     }
   };
+=======
+
+function AccountForm() {
+>>>>>>> 338eab33b2b08d861d0f66ccc85db7cd46113883
   return (
     <div className="account-wrapper">
       <div className="Accounttt">
@@ -39,11 +44,16 @@ function AccountForm() {
         </div>
       </div>
 
+<<<<<<< HEAD
       <form onSubmit={handleSubmit(onSubmit)} id="account-form">
+=======
+      <form method="post" action="서버의url" id="account-form">
+>>>>>>> 338eab33b2b08d861d0f66ccc85db7cd46113883
         <div className="account-mom">
           <h2>회원가입</h2>
           <div className="account1">
             <p className="account_name">이름</p>
+<<<<<<< HEAD
             <input
               type="text"
               name="fullName"
@@ -83,11 +93,23 @@ function AccountForm() {
               })}
             />
             {errors.email && <small role="alert">{errors.email.message}</small>}
+=======
+            <input type="text" name="FUll_Name" placeholder="Full Name" />
+          </div>
+          <div className="account2">
+            <p className="account_name">닉네임</p>
+            <input type="text" name="nickname" placeholder="Nickname" />
+          </div>
+          <div className="account3">
+            <p className="account_name">이메일</p>
+            <input type="email" name="userName" placeholder="Email" />
+>>>>>>> 338eab33b2b08d861d0f66ccc85db7cd46113883
           </div>
           <div className="account4">
             <p className="account_name">비밀번호</p>
             <input
               type="password"
+<<<<<<< HEAD
               name="password1"
               placeholder="Password"
               {...register("password1", {
@@ -101,11 +123,17 @@ function AccountForm() {
             {errors.password1 && (
               <small role="alert">{errors.password1.message}</small>
             )}
+=======
+              name="userPassword1"
+              placeholder="Password"
+            />
+>>>>>>> 338eab33b2b08d861d0f66ccc85db7cd46113883
           </div>
           <div className="account5">
             <p className="account_name">비밀번호 확인</p>
             <input
               type="password"
+<<<<<<< HEAD
               name="password2"
               placeholder="Password"
               {...register("password2", {
@@ -131,6 +159,15 @@ function AccountForm() {
             {errors.birthDate && (
               <small role="alert">{errors.birthDate.message}</small>
             )}
+=======
+              name="userPassword2"
+              placeholder="Password"
+            />
+          </div>
+          <div className="account6">
+            <p className="account_name">생년월일</p>
+            <input type="date" name="user_Date" />
+>>>>>>> 338eab33b2b08d861d0f66ccc85db7cd46113883
           </div>
           <div className="account7">
             <input type="submit" id="Create_Id" value="가입하기" />
