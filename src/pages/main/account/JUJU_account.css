@@ -25,6 +25,18 @@
   font-family: "Cafe24Meongi-W-v1.0";
   font-size: 25px;
 }
+.Accounttt2 button {
+  width: 50%;
+  text-align: left;
+  font-family: "Cafe24Meongi-W-v1.0";
+  font-size: 25px;
+  border: none;
+  background-color: #ecb9b9;
+  cursor: pointer;
+}
+.Accounttt2 button:hover {
+  color: white;
+}
 
 .Accounttt3 {
   width: 50%;
@@ -45,6 +57,7 @@
   box-shadow: 7px 7px rgba(146, 103, 11, 0.158);
   /* box-shadow: 10px 10px; */
   border-radius: 10px;
+  overflow-y: scroll;
 }
 
 #account-mom {
@@ -115,19 +128,8 @@
   box-sizing: border-box;
   margin-bottom: 15px;
   border-radius: 15px;
-
   font-size: 16px;
-  color: #333;
-  appearance: none; /* 브라우저 기본 스타일 제거 */
-  position: relative;
-  /* background-image: url("calendar-icon.svg"); 달력 아이콘 추가 (아이콘 파일 필요) */
-  background-repeat: no-repeat;
   background-position: right 10px center;
-  cursor: pointer;
-}
-
-.account6 > input[type="date"]::-webkit-calendar-picker-indicator {
-  opacity: 0;
 }
 
 #Create_Id {
@@ -136,4 +138,27 @@
   color: white;
   font-family: "Ownglyph_UNZ-Rg";
   font-size: 20px;
+}
+
+.Accountsmall {
+  display: block;
+  color: red; /* 에러 메시지를 빨간색으로 표시, 원하는 색상으로 변경 가능 */
+  margin-top: 5px; /* 여백을 추가하여 좀 더 보기 좋게 만듭니다 */
+  font-size: 18px;
+}
+
+#account-form ::-webkit-scrollbar {
+  width: 10px;
+}
+
+#account-form ::-webkit-scrollbar-track {
+  background: rgba(220, 20, 60, 0.1); /*스크롤바 뒷 배경 색상*/
+}
+#account-form {
+  overflow: auto; /* 스크롤바가 나타나도록 설정 */
+}
+
+#account-form ::-webkit-scrollbar-thumb {
+  background: rgba(220, 20, 60); /* 스크롤바 색상 */
+  border-radius: 10px; /* 스크롤바 둥근 테두리 */
 }

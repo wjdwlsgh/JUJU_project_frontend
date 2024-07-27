@@ -107,14 +107,14 @@ function Login({ setNickname }) {
             <button
               type="button"
               id="Login_button2"
-              onClick={() => handleNavigate("/account")}
+              onClick={() => handleNavigate("/api/account")}
             >
               회원가입
             </button>
             <button
               type="button"
               id="Login_button3"
-              onClick={() => handleNavigate("/find")}
+              onClick={() => handleNavigate("/api/find")}
             >
               비밀번호 찾기
             </button>

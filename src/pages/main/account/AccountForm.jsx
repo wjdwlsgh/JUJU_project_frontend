@@ -34,7 +34,9 @@ function AccountForm() {
   return (
     <div className="account-wrapper">
       <div className="Accounttt">
-        <div className="Accounttt2">JUJU__Calendar_</div>
+        <div className="Accounttt2">
+          <button onClick={() => navigate("/")}>JUJU__Calendar_</button>
+        </div>
         <div className="Accounttt3">
           # 하 이 # juju # 코 린 이 들 # 쌈 @ 뽕 # 🐧 🐹 🐶 🐿️ 🐤
         </div>
@@ -52,7 +54,9 @@ function AccountForm() {
               {...register("fullName", { required: "이름은 필수 입력입니다." })}
             />
             {errors.fullName && (
-              <small role="alert">{errors.fullName.message}</small>
+              <small className="Accountsmall" role="alert">
+                {errors.fullName.message}
+              </small>
             )}
           </div>
           <div className="account2">
@@ -66,7 +70,9 @@ function AccountForm() {
               })}
             />
             {errors.nickname && (
-              <small role="alert">{errors.nickname.message}</small>
+              <small className="Accountsmall" role="alert">
+                {errors.nickname.message}
+              </small>
             )}
           </div>
           <div className="account3">
@@ -83,7 +89,11 @@ function AccountForm() {
                 },
               })}
             />
-            {errors.email && <small role="alert">{errors.email.message}</small>}
+            {errors.email && (
+              <small className="Accountsmall" role="alert">
+                {errors.email.message}
+              </small>
+            )}
           </div>
           <div className="account4">
             <p className="account_name">비밀번호</p>
@@ -100,7 +110,9 @@ function AccountForm() {
               })}
             />
             {errors.password1 && (
-              <small role="alert">{errors.password1.message}</small>
+              <small className="Accountsmall" role="alert">
+                {errors.password1.message}
+              </small>
             )}
           </div>
           <div className="account5">
@@ -117,7 +129,9 @@ function AccountForm() {
               })}
             />
             {errors.password2 && (
-              <small role="alert">{errors.password2.message}</small>
+              <small className="Accountsmall" role="alert">
+                {errors.password2.message}
+              </small>
             )}
           </div>
           <div className="account6">
@@ -130,7 +144,9 @@ function AccountForm() {
               })}
             />
             {errors.birthDate && (
-              <small role="alert">{errors.birthDate.message}</small>
+              <small className="Accountsmall" role="alert">
+                {errors.birthDate.message}
+              </small>
             )}
           </div>
           <div className="account7">

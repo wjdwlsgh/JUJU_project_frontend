@@ -33,12 +33,7 @@ const Home = () => {
   return (
     <div className="setting-icon">
       <button className="setting-icon-button" onClick={handleClick}>
-        <img
-          className="setting-icon-img"
-          src={settingImg}
-          alt="설정 아이콘"
-          // style={{ width: "20px", height: "20px" }}
-        />
+        <img className="setting-icon-img" src={settingImg} alt="설정 아이콘" />
         설정
       </button>
     </div>
