@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const port = 8080;
+const nodemailer = require("nodemailer");
 
 // CORS 설정
 app.use(
@@ -19,10 +20,68 @@ app.use(express.json());
 let idCounter = 1;
 const todolist = [];
 const users = [];
+const emailVerificationCodes = {}; // 이메일 인증 코드를 저장하는 객체
+
+// Nodemailer 설정 (이 설정은 실제 메일 전송을 위해 구성되어야 합니다)
+const transporter = nodemailer.createTransport({
+  service: "gmail", // 예: 'gmail'
+  auth: {
+    user: "jujucompany123@gmail.com", // 발신자 이메일
+    pass: "abc123abc!@#", // 발신자 이메일 비밀번호
+  },
+});
 
 // 기본 경로 처리
 app.get("/", (req, res) => {
   res.send("Hello, this is the backend server for the ToDo app!");
+});
+
+// 이메일 인증 코드 전송 라우트
+app.post("/api/send-email-verification", (req, res) => {
+  const { email } = req.body;
+  const existingUser = users.find((u) => u.email === email);
+
+  if (existingUser) {
+    return res.status(400).json({ message: "이미 가입된 이메일입니다." });
+  }
+
+  const verificationCode = Math.floor(
+    100000 + Math.random() * 900000
+  ).toString();
+  emailVerificationCodes[email] = verificationCode;
+
+  const mailOptions = {
+    from: "jujucompany@gmail.com",
+    to: email,
+    subject: "이메일 인증 코드",
+    text: `인증 코드는 ${verificationCode} 입니다.`,
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      return res.status(500).json({ message: "이메일 전송 실패", error });
+    }
+    res.status(200).json({ message: "인증 코드가 이메일로 전송되었습니다." });
+  });
+});
+
+// 이메일 인증 코드 확인 라우트
+app.post("/api/verify-email-code", (req, res) => {
+  const { email, code } = req.body;
+  const savedCode = emailVerificationCodes[email];
+
+  if (savedCode && savedCode === code) {
+    delete emailVerificationCodes[email];
+    res.status(200).json({ message: "이메일 인증 완료", verified: true });
+  } else {
+    res
+      .status(400)
+      .json({ message: "인증 코드가 유효하지 않습니다.", verified: false });
+  }
+});
+
+app.get("/api/verify-email-code", (req, res) => {
+  res.json(emailVerificationCodes);
 });
 
 // 회원가입 라우트

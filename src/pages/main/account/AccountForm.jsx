@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./JUJU_account.css";
 import axios from "axios";
 import { useForm } from "react-hook-form";
@@ -12,6 +12,7 @@ function AccountForm() {
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
+  const [emailSent, setEmailSent] = useState(false);
 
   const onSubmit = async (data) => {
     try {
@@ -19,7 +20,7 @@ function AccountForm() {
         "http://localhost:8080/api/register",
         data
       );
-      console.log("회원가입 응답:", response.data); // 응답 데이터 로그 출력
+      console.log("회원가입 응답:", response.data);
 
       alert("회원가입 성공");
       navigate("/"); // 회원가입 후 로그인 페이지로 이동
@@ -27,6 +28,25 @@ function AccountForm() {
       console.error("회원가입 실패:", error);
       alert(
         "회원가입 실패: " + (error.response?.data?.message || error.message)
+      );
+    }
+  };
+
+  const sendVerificationCode = async () => {
+    const email = getValues("email");
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/send-email-verification",
+        { email }
+      );
+      console.log("이메일 인증 코드 전송 응답:", response.data);
+      alert("인증 코드가 이메일로 전송되었습니다.");
+      setEmailSent(true);
+    } catch (error) {
+      console.error("이메일 인증 코드 전송 실패:", error);
+      alert(
+        "이메일 인증 코드 전송 실패: " +
+          (error.response?.data?.message || error.message)
       );
     }
   };
@@ -94,6 +114,27 @@ function AccountForm() {
                 {errors.email.message}
               </small>
             )}
+            <button type="button" onClick={sendVerificationCode}>
+              인증 코드 전송
+            </button>
+            {emailSent && (
+              <div className="account3">
+                <p className="account_name">인증 코드</p>
+                <input
+                  type="text"
+                  name="verificationCode"
+                  placeholder="Verification Code"
+                  {...register("verificationCode", {
+                    required: "인증 코드는 필수 입력입니다.",
+                  })}
+                />
+                {errors.verificationCode && (
+                  <small className="Accountsmall" role="alert">
+                    {errors.verificationCode.message}
+                  </small>
+                )}
+              </div>
+            )}
           </div>
           <div className="account4">
             <p className="account_name">비밀번호</p>
@@ -120,7 +161,7 @@ function AccountForm() {
             <input
               type="password"
               name="password2"
-              placeholder="Password"
+              placeholder="Confirm Password"
               {...register("password2", {
                 required: "비밀번호 확인은 필수 입력입니다.",
                 validate: (value) =>
@@ -150,7 +191,7 @@ function AccountForm() {
             )}
           </div>
           <div className="account7">
-            <input type="submit" id="Create_Id" value="가입하기" />
+            <button type="submit">회원가입</button>
           </div>
         </div>
       </form>
