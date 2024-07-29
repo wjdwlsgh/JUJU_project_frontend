@@ -114,7 +114,11 @@ function AccountForm() {
                 {errors.email.message}
               </small>
             )}
-            <button type="button" onClick={sendVerificationCode}>
+            <button
+              type="button"
+              className="mailcode"
+              onClick={sendVerificationCode}
+            >
               인증 코드 전송
             </button>
             {emailSent && (
