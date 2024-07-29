@@ -1,15 +1,21 @@
-// Main.js
-import React from "react";
+import React, { useState } from "react";
 import "./Main.css";
 import mainImage from "../../assets/imgs/main.png";
 import Full from "../../components/main/full/full";
 import Home from "../Home/Home";
 import Clock from "../../components/Todo/Clock";
+import ProfilePicture from "../../components/Setting/ProfilePicture";
 import "../../components/main/full/full.css";
-const Main = ({ profilePicture, nickname }) => {
-  // fetch("http://localhost:4000/api/todo")
-  //   .then((response) => response.json())
-  //   .then((data) => console.log(data));
+
+const Main = ({ initialProfilePicture, nickname }) => {
+  const [profilePicture, setProfilePicture] = useState(
+    initialProfilePicture || mainImage
+  );
+
+  const handleUpload = (newProfilePictureUrl) => {
+    setProfilePicture(newProfilePictureUrl);
+  };
+
   return (
     <div className="Mainbody">
       <div className="menu_wrapper">
@@ -19,22 +25,10 @@ const Main = ({ profilePicture, nickname }) => {
           </div>
 
           <div className="profile-info">
-            {profilePicture ? (
-              <img
-                src={profilePicture}
-                alt="Profile"
-                className="profile-picture"
-                style={{ width: "150px", height: "150px" }}
-              />
-            ) : (
-              <img
-                src={mainImage} // 기본 이미지
-                alt="Default Profile"
-                className="profile-picture"
-                style={{ width: "150px", height: "150px" }}
-              />
-            )}
-
+            <ProfilePicture
+              onUpload={handleUpload}
+              defaultImage={profilePicture}
+            />
             <div className="nickname"> {nickname}님 </div>
           </div>
 

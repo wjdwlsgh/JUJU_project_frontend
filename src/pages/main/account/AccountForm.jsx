@@ -160,27 +160,17 @@ function AccountForm() {
                 {errors.email.message}
               </small>
             )}
-<<<<<<< HEAD
-            <button
-              type="button"
-              className="mailcode"
-              onClick={sendVerificationCode}
-            >
-              인증 코드 전송
-            </button>
-            {emailSent && (
-=======
             {!emailSent && (
               <button
                 type="button"
                 onClick={sendVerificationCode}
                 disabled={emailSending}
+                className="emailcode"
               >
                 {emailSending ? "전송 중..." : "인증 코드 전송"}
               </button>
             )}
             {emailSent && !isVerified && (
->>>>>>> 7442928cb035e628b80056b4e45cad27a9da503f
               <div className="account3">
                 <p className="account_name">인증 코드</p>
                 <input

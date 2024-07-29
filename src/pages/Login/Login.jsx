@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios"; // Axios import
 
-function Login({ setNickname }) {
+function Login({ setNickname = () => {} }) {
   const navigate = useNavigate();
   const {
     register,
@@ -28,7 +28,7 @@ function Login({ setNickname }) {
       setNickname(response.data.user.nickname); // 서버 응답에 따라 적절한 필드로 설정
 
       alert("로그인 성공");
-      navigate("/main"); // 로그인 후 홈 페이지로 이동
+      navigate("/api/main"); // 로그인 후 홈 페이지로 이동
     } catch (error) {
       console.error("로그인 실패:", error);
       alert("로그인 실패: " + (error.response?.data?.message || error.message));
