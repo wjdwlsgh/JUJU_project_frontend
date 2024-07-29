@@ -5,13 +5,14 @@
   overflow: hidden;
   display: flex; /* Flexbox 사용 */
   flex-direction: column; /* 세로 방향으로 배치 */
-  background-color: #f1d1d26e;
+  background-color: #fffbf9d0;
 }
 .Findtt {
   display: flex;
   width: 100%;
-  height: 7%;
-  background-color: #ecb9b9;
+  height: 9%;
+  /* background-color: #f1d7ae; */
+  background-color: #ebd5c5ee;
   align-content: center;
   align-items: center;
   /* box-shadow: white 1px 1px 1px 3px; */
@@ -22,7 +23,9 @@
   text-align: left;
   margin-left: 30px;
   font-family: "Cafe24Meongi-W-v1.0";
-  font-size: 25px;
+  font-size: 40px;
+  color: #a78f7eee;
+  text-shadow: 5px 5px white;
 }
 
 .Findtt3 {
@@ -30,8 +33,9 @@
   text-align: right;
   margin-right: 30px;
   font-family: "Ownglyph_UNZ-Rg";
-  font-size: 23px;
+  font-size: 26px;
   font-weight: 200px;
+  color: #a69080;
 }
 
 .Findtt4 {
@@ -48,18 +52,17 @@
 
 #find-form {
   align-content: center;
-  width: 100%;
-  max-width: 700px; /* 최대 너비 설정 */
-  height: 65%;
+  width: 90%;
+  max-width: 650px; /* 최대 너비 설정 */
+  height: 50%;
   min-height: 600px;
   align-content: center;
   display: flex; /* Flexbox 사용 */
   flex-direction: column; /* 세로 방향으로 배치 */
-  background-color: #f1e4ac48;
-  box-shadow: 7px 7px rgba(146, 103, 11, 0.158);
-  /* box-shadow: 10px 10px; */
-  border-radius: 10px;
-  margin-top: 5%;
+  background-color: #ffebdf;
+  box-shadow: 10px 10px #dec5b5c2;
+  border-radius: 50px;
+  margin-top: 2%;
 }
 
 .find-form-mom {
@@ -68,37 +71,55 @@
   align-items: center;
   align-content: center;
 }
+
 #Find_Title {
-  font-size: 50px;
-  margin-bottom: 40px;
+  font-size: 60px;
+  /* margin-bottom: 10%; */
   font-style: normal;
-  color: #d79999;
+  color: #f8c978;
   text-align: center;
-  font-family: "Ownglyph_UNZ-Rg";
-  margin-left: 10px;
+  /* font-family: "Ownglyph_ryurue-Rg"; */
+  font-family: "Cafe24Meongi-W-v1.0";
+  margin-left: 4%;
+  font-weight: lighter;
+  text-shadow: 1px 1px #e4cfbe;
+  margin: 1%;
 }
 
 .Find_text1,
 .Find_text2,
-.Find_text3,
+.Find_text3 {
+  width: 100%;
+  margin-top: 3.3rem;
+  display: flex;
+  flex-direction: row;
+  /* height: auto; */
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%; /* 부모 요소의 너비에 맞춤 */
+}
+
 .Find_text4 {
-  margin-bottom: 1rem;
+  width: 100%;
+  margin-top: 3rem;
   display: flex;
   flex-direction: column;
-  height: auto; /* 자동 높이 */
+  /* height: auto; */
   align-items: center;
   box-sizing: border-box;
   width: 100%; /* 부모 요소의 너비에 맞춤 */
 }
 
 .find_text_title {
-  display: flex;
-  width: 55%; /* 부모 요소의 너비에 맞춤 */
-  margin-bottom: 10px;
+  /* display: flex; */
+  width: 30%; /* 부모 요소의 너비에 맞춤 */
+  /* margin-bottom: 1%; */
   box-sizing: border-box;
-  text-align: left;
-  font-family: "Ownglyph_UNZ-Rg";
-  font-size: 23px;
+  text-align: center;
+  /* font-family: "Ownglyph_ryurue-Rg"; */
+  font-family: "insungitCutelivelyjisu";
+  color: #baab9f;
+  font-size: 30px;
 }
 
 #FindEmail,
@@ -114,19 +135,95 @@
 }
 
 #Findbutton {
-  background-color: #f1d1d2;
-  border-radius: 20px;
+  background-color: #ded9a9;
+  border-radius: 50px;
   width: 100%; /* 부모 요소의 너비에 맞춤 */
   max-width: 200px; /* 최대 너비 설정 */
   margin: 10px 0 10px 10px; /* 상하 간격 추가 */
   height: 50px;
   cursor: pointer;
-  margin-top: 20px;
-  font-family: "Ownglyph_UNZ-Rg";
+  /* margin-top: 20px; */
+  /* font-family: "Ownglyph_ryurue-Rg"; */
+  font-family: "insungitCutelivelyjisu";
   font-size: 25px;
   border: none;
   text-align: center;
-  border: solid 5px rgba(255, 192, 203, 0.185);
+  border: 2px solid #aea985;
+}
 
-  /* box-shadow: 5px 5px 5px; */
+#Findbutton:hover {
+  background-color: #c9c17b;
+  transition-duration: 0.5s;
+  margin-left: 2px;
+  margin-top: 2px;
+  box-shadow: 5px 5px #96916c;
+}
+
+#fullName {
+  width: 50%;
+  /* font-family: "Ownglyph_ryurue-Rg"; */
+  font-family: "insungitCutelivelyjisu";
+  font-size: 25px;
+  margin-left: 6%;
+  border-radius: 50px;
+  background-color: #f1d7ae;
+  /* border: 2px solid #baab9f; */
+  /* box-shadow: 3px 3px #a29d81db; */
+  padding: 15px;
+  cursor: pointer;
+  border: none;
+}
+
+#fullName:hover {
+  background-color: #e2b493;
+  transition-duration: 0.6s;
+}
+
+#fullName::placeholder {
+  color: #676654;
+}
+
+#email {
+  width: 50%;
+  /* font-family: "Ownglyph_ryurue-Rg"; */
+  font-family: "insungitCutelivelyjisu";
+  /* font-family: "bitbit"; */
+  font-size: 25px;
+  margin-left: 6%;
+  border-radius: 50px;
+  background-color: #f8dfb6;
+  /* border: 2px solid #baab9f; */
+  /* box-shadow: 3px 3px #a29d81db; */
+  padding: 15px;
+  cursor: pointer;
+  border: none;
+}
+
+#email::placeholder {
+  color: #676654;
+}
+
+#email:hover {
+  background-color: #e2b493;
+  transition-duration: 0.6s;
+}
+
+#birthDate {
+  width: 50%;
+  /* font-family: "Ownglyph_ryurue-Rg"; */
+  font-family: "insungitCutelivelyjisu";
+  font-size: 22px;
+  margin-left: 6%;
+  border-radius: 50px;
+  background-color: #f8dfb6;
+  border: none;
+  /* border: 2px solid #baab9f; */
+  /* box-shadow: 3px 3px #a29d81db; */
+  padding: 15px;
+  cursor: pointer;
+}
+
+#birthDate:hover {
+  background-color: #e2b493;
+  transition-duration: 0.6s;
 }

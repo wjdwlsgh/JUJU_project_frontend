@@ -48,7 +48,7 @@ function Find() {
       </div>
       <div className="find-form-mom">
         <form method="post" id="find-form" onSubmit={handleSubmit}>
-          <h2 id="Find_Title">비밀번호 찾기🔐</h2>
+          <h2 id="Find_Title">Find Password🔐</h2>
           <div className="Find_text1">
             <label htmlFor="fullName" className="find_text_title">
               이름
