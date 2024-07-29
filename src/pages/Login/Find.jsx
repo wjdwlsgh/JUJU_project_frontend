@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Find.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Find() {
   const [formData, setFormData] = useState({
@@ -16,6 +17,8 @@ function Find() {
       [id]: value,
     }));
   };
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,7 +44,9 @@ function Find() {
   return (
     <div className="find-wrapper">
       <div className="Findtt">
-        <div className="Findtt2">JUJU__Calendar_</div>
+        <div className="Accounttt2">
+          <button onClick={() => navigate("/")}>JUJU__Calendar_</button>
+        </div>
         <div className="Findtt3">
           # 하 이 # juju # 코 린 이 들 # 쌈 @ 뽕 # 🐧 🐹 🐶 🐿️ 🐤
         </div>

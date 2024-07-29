@@ -160,3 +160,8 @@
   padding: 15px;
   margin-bottom: 0px;
 }
+
+.fc-event-title.fc-sticky {
+  color: #6c5d53;
+  color: #f0d8cb;
+}

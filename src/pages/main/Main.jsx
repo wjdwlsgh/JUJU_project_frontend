@@ -1,22 +1,22 @@
-// Main.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Main.css";
-import mainImage from "../../assets/imgs/main.png";
 import Full from "../../components/main/full/full";
-import Home from "../Home/Home";
 import Clock from "../../components/Todo/Clock";
+import Home from "../Home/Home";
 import "../../components/main/full/full.css";
+import "./Main.css";
 
-const Main = ({ profilePicture: initialProfilePicture, nickname }) => {
-  const [profilePicture, setProfilePicture] = useState(
-    initialProfilePicture || mainImage
-  );
+const Main = ({ profilePicture, nickname }) => {
+  const [currentProfilePicture, setCurrentProfilePicture] = useState(() => {
+    return localStorage.getItem("userProfilePicture") || profilePicture;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("userProfilePicture", currentProfilePicture);
+  }, [currentProfilePicture]);
+
   const navigate = useNavigate();
 
-  // fetch("http://localhost:4000/api/todo")
-  //   .then((response) => response.json())
-  //   .then((data) => console.log(data));
   return (
     <div className="Mainbody">
       <div className="menu_wrapper">
@@ -24,43 +24,14 @@ const Main = ({ profilePicture: initialProfilePicture, nickname }) => {
           <div className="setting-icon-div">
             <Home />
           </div>
-          {/* 
-          <div className="profile-info">
-            {profilePicture ? (
-              <img
-                src={profilePicture}
-                alt="Profile"
-                className="profile-picture"
-                style={{ width: "150px", height: "150px" }}
-              />
-            ) : (
-              <img
-                src={mainImage} // 기본 이미지
-                alt="Default Profile"
-                className="profile-picture"
-                style={{ width: "150px", height: "150px" }}
-              />
-            )}
-
-            <div className="nickname"> {nickname}님 </div>
-          </div> */}
 
           <div className="profile-info">
-            {profilePicture ? (
-              <img
-                src={profilePicture}
-                alt="Profile"
-                className="profile-picture"
-                style={{ width: "150px", height: "150px" }}
-              />
-            ) : (
-              <img
-                src={mainImage} // 기본 이미지
-                alt="Default Profile"
-                className="profile-picture"
-                style={{ width: "150px", height: "150px" }}
-              />
-            )}
+            <img
+              src={currentProfilePicture}
+              alt="Profile"
+              className="profile-picture"
+              style={{ width: "150px", height: "150px" }}
+            />
             <div className="nickname"> {nickname}님 </div>
           </div>
 
@@ -70,10 +41,7 @@ const Main = ({ profilePicture: initialProfilePicture, nickname }) => {
         </div>
 
         <div className="left_container2">
-          {/* <ProfilePicture
-            onUpload={handleProfilePictureUpload}
-            defaultImage={profilePicture}
-          /> */}
+          {/* ProfilePicture component has been removed */}
         </div>
       </div>
 

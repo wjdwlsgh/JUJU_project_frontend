@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const nodemailer = require("nodemailer");
 const multer = require("multer");
-const path = require("path"); // 추가된 부분
+const path = require("path");
 require("dotenv").config(); // 환경 변수 로드
 
 const app = express();
@@ -28,6 +28,7 @@ const users = [
     email: "test@example.com",
     birthDate: "2000-01-01",
     password: "originalPassword",
+    nickname: "testnickname",
   },
 ];
 const emailVerificationCodes = {};
@@ -37,7 +38,7 @@ const generateTempPassword = () => {
   return Math.random().toString(36).slice(-8); // 8자리 임시 비밀번호 생성
 };
 
-// multer를 위한 저장소 엔진 설정
+// 파일 업로드 설정
 const storage = multer.diskStorage({
   destination: "./uploads/",
   filename: (req, file, cb) => {
@@ -46,7 +47,7 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-// 프로필 사진 업로드 엔드포인트
+// 프로필 사진 업로드
 app.post(
   "/api/uploadProfilePicture",
   upload.single("profilePicture"),
@@ -55,7 +56,6 @@ app.post(
       return res.status(400).send("파일이 업로드되지 않았습니다.");
     }
 
-    // 파일 경로를 데이터베이스에 저장하거나 URL을 반환한다고 가정
     const filePath = `/uploads/${req.file.filename}`;
     res.json({ url: filePath });
   }
@@ -207,7 +207,7 @@ app.post("/api/todo", (req, res) => {
   const { title, start, end, color } = req.body;
 
   if (!title) {
-    return res.status(400).json({ error: "Title is required" });
+    return res.status(400).json({ error: "제목이 필요합니다." });
   }
 
   const newTodo = {
@@ -229,7 +229,7 @@ app.put("/api/todo/:id", (req, res) => {
 
   const todoIndex = todolist.findIndex((todo) => todo.id === parseInt(id));
   if (todoIndex === -1) {
-    return res.status(404).json({ error: "Todo not found" });
+    return res.status(404).json({ error: "할 일이 없습니다." });
   }
 
   if (title !== undefined) {
@@ -254,11 +254,43 @@ app.delete("/api/todo/:id", (req, res) => {
   const todoIndex = todolist.findIndex((todo) => todo.id === parseInt(id));
 
   if (todoIndex === -1) {
-    return res.status(404).json({ error: "Todo not found" });
+    return res.status(404).json({ error: "할 일이 없습니다." });
   }
 
   todolist.splice(todoIndex, 1);
   res.status(204).send();
+});
+
+// 비밀번호 변경 처리
+app.post("/api/changePassword", (req, res) => {
+  const { email, currentPassword, newPassword } = req.body;
+  const user = users.find((u) => u.email === email);
+
+  if (!user) {
+    return res.status(404).json({ message: "사용자를 찾을 수 없습니다." });
+  }
+
+  if (user.password !== currentPassword) {
+    return res
+      .status(400)
+      .json({ message: "현재 비밀번호가 올바르지 않습니다." });
+  }
+
+  user.password = newPassword;
+  res.json({ message: "비밀번호가 성공적으로 변경되었습니다." });
+});
+
+// 닉네임 변경 처리
+app.post("/api/changeNickname", (req, res) => {
+  const { email, newNickname } = req.body;
+  const user = users.find((u) => u.email === email);
+
+  if (!user) {
+    return res.status(404).json({ message: "사용자를 찾을 수 없습니다." });
+  }
+
+  user.nickname = newNickname;
+  res.json({ message: "닉네임이 성공적으로 변경되었습니다." });
 });
 
 // 서버 시작
