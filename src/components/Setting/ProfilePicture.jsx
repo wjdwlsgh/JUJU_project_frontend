@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import mainImage from "../../assets/imgs/main.png";
-import { toast } from "react-toastify"; // react-toastify 모듈 임포트
-import "react-toastify/dist/ReactToastify.css"; // toast 스타일 임포트
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./ProfilePicture.css";
 
 const ProfilePicture = ({ onUpload, defaultImage }) => {
@@ -42,15 +42,15 @@ const ProfilePicture = ({ onUpload, defaultImage }) => {
         }
       );
       const imageUrl = response.data.url;
-      console.log("서버에서 받은 이미지 URL:", imageUrl);
       const fullImageUrl = `http://localhost:8080${imageUrl}`;
       onUpload(fullImageUrl);
+      localStorage.setItem("userProfilePicture", fullImageUrl);
       setUploadError(null);
-      toast.success("프로필 사진이 성공적으로 업로드되었습니다."); // 성공 toast 메시지
+      toast.success("프로필 사진이 성공적으로 업로드되었습니다.");
     } catch (error) {
       console.error("프로필 사진 업로드 오류:", error);
       setUploadError("프로필 사진 업로드를 실패하였습니다.");
-      toast.error("프로필 사진 업로드를 실패하였습니다."); // 실패 toast 메시지
+      toast.error("프로필 사진 업로드를 실패하였습니다.");
     }
   };
 

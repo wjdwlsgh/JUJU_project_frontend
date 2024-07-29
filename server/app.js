@@ -37,7 +37,6 @@ const generateTempPassword = () => {
   return Math.random().toString(36).slice(-8); // 8자리 임시 비밀번호 생성
 };
 
-// multer를 위한 저장소 엔진 설정
 const storage = multer.diskStorage({
   destination: "./uploads/",
   filename: (req, file, cb) => {
@@ -46,7 +45,6 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-// 프로필 사진 업로드 엔드포인트
 app.post(
   "/api/uploadProfilePicture",
   upload.single("profilePicture"),
@@ -55,7 +53,6 @@ app.post(
       return res.status(400).send("파일이 업로드되지 않았습니다.");
     }
 
-    // 파일 경로를 데이터베이스에 저장하거나 URL을 반환한다고 가정
     const filePath = `/uploads/${req.file.filename}`;
     res.json({ url: filePath });
   }
@@ -63,12 +60,14 @@ app.post(
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
 // Nodemailer 설정
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: process.env.EMAIL_USER, // 환경 변수에서 발신자 이메일
-    pass: process.env.EMAIL_PASS, // 환경 변수에서 앱 비밀번호
+    user: "jujucompany123@gmail.com", // 환경 변수에서 발신자 이메일
+    pass: "", // 환경 변수에서 앱 비밀번호
   },
 });
 
@@ -86,7 +85,7 @@ app.post("/api/forgot-password", async (req, res) => {
 
     try {
       await transporter.sendMail({
-        from: process.env.EMAIL_USER,
+        from: "jujucompany123@gmail.com",
         to: email,
         subject: "임시 비밀번호 안내",
         text: `임시 비밀번호는 ${tempPassword}입니다.`,
@@ -116,7 +115,7 @@ app.post("/api/send-email-verification", (req, res) => {
   emailVerificationCodes[email] = verificationCode;
 
   const mailOptions = {
-    from: process.env.EMAIL_USER,
+    from: "jujucompany123@gmail.com",
     to: email,
     subject: "이메일 인증 코드",
     text: `인증 코드는 ${verificationCode} 입니다.`,
@@ -259,6 +258,37 @@ app.delete("/api/todo/:id", (req, res) => {
 
   todolist.splice(todoIndex, 1);
   res.status(204).send();
+});
+
+// 비밀번호 변경 처리
+app.post("/api/changePassword", (req, res) => {
+  const { email, currentPassword, newPassword } = req.body;
+  const user = users.find((u) => u.email === email);
+
+  if (!user) {
+    return res.status(404).json({ message: "사용자를 찾을 수 없습니다." });
+  }
+
+  if (user.password !== currentPassword) {
+    return res
+      .status(400)
+      .json({ message: "현재 비밀번호가 올바르지 않습니다." });
+  }
+
+  user.password = newPassword;
+  res.json({ message: "비밀번호가 성공적으로 변경되었습니다." });
+});
+// 닉네임 변경 처리
+app.post("/api/changeNickname", (req, res) => {
+  const { email, newNickname } = req.body;
+  const user = users.find((u) => u.email === email);
+
+  if (!user) {
+    return res.status(404).json({ message: "사용자를 찾을 수 없습니다." });
+  }
+
+  user.nickname = newNickname;
+  res.json({ message: "닉네임이 성공적으로 변경되었습니다." });
 });
 
 // 서버 시작

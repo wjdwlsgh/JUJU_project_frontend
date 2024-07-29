@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./ChangePassword.css";
 
-const ChangePassword = () => {
+const ChangePassword = ({ userEmail }) => {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
 
@@ -17,22 +17,22 @@ const ChangePassword = () => {
   const handleSave = async () => {
     try {
       const response = await axios.post("/api/changePassword", {
+        email: userEmail,
         currentPassword,
         newPassword,
       });
       console.log("Password updated:", response.data);
+      alert("비밀번호 변경이 완료되었습니다!");
     } catch (error) {
       console.error("Error updating password:", error);
+      alert("비밀번호 변경에 실패하였습니다.");
     }
-    alert("비밀번호 변경이 완료되었습니다!");
   };
 
   return (
     <div>
-      {/* <h2>비밀번호 변경</h2> */}
       <input
         className="password-input"
-        // className="password-input"
         type="password"
         placeholder="현재 비밀번호를 입력하세요"
         value={currentPassword}

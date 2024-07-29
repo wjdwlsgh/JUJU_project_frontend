@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios"; // Axios import
 
-function Login({ setNickname = () => {} }) {
+function Login({ setNickname }) {
   const navigate = useNavigate();
   const {
     register,
@@ -18,6 +18,7 @@ function Login({ setNickname = () => {} }) {
 
   const onSubmit = async (data) => {
     try {
+      // 로그인 요청
       const response = await axios.post(
         "http://localhost:8080/api/login",
         data
@@ -25,10 +26,18 @@ function Login({ setNickname = () => {} }) {
       console.log("로그인 응답:", response.data); // 응답을 콘솔에 출력
 
       // 로그인 성공 시 닉네임 업데이트
-      setNickname(response.data.user.nickname); // 서버 응답에 따라 적절한 필드로 설정
+      if (setNickname && typeof setNickname === "function") {
+        setNickname(response.data.user.nickname); // 서버 응답에 따라 적절한 필드로 설정
+      } else {
+        console.error("setNickname은 함수가 아닙니다.");
+      }
+
+      // 로컬 스토리지에 사용자 정보 저장
+      localStorage.setItem("userNickname", response.data.user.nickname);
+      localStorage.setItem("userEmail", data.email);
 
       alert("로그인 성공");
-      navigate("/api/main"); // 로그인 후 홈 페이지로 이동
+      navigate("/api/main"); // 로그인 후 메인 페이지로 이동
     } catch (error) {
       console.error("로그인 실패:", error);
       alert("로그인 실패: " + (error.response?.data?.message || error.message));
