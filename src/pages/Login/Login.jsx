@@ -19,21 +19,18 @@ function Login({ setNickname }) {
   const onSubmit = async (data) => {
     try {
       // 로그인 요청
-      const response = await axios.post(
-        "http://localhost:8080/api/login",
-        data
-      );
+      const response = await axios.post("http://localhost:8080/api/login", data);
       console.log("로그인 응답:", response.data); // 응답을 콘솔에 출력
 
       // 로그인 성공 시 닉네임 업데이트
       if (setNickname && typeof setNickname === "function") {
-        setNickname(response.data.user.nickname); // 서버 응답에 따라 적절한 필드로 설정
+        setNickname(response.data.nickname); // 서버 응답에 따라 적절한 필드로 설정
       } else {
         console.error("setNickname은 함수가 아닙니다.");
       }
 
       // 로컬 스토리지에 사용자 정보 저장
-      localStorage.setItem("userNickname", response.data.user.nickname);
+      localStorage.setItem("userNickname", response.data.nickname);
       localStorage.setItem("userEmail", data.email);
 
       alert("로그인 성공");
@@ -48,9 +45,7 @@ function Login({ setNickname }) {
     <div className="login-wrapper">
       <div className="Logintt">
         <div className="Logintt2">JUJU__Calendar_</div>
-        <div className="Logintt3">
-          # 하 이 # juju # 코 린 이 들 # 쌈 @ 뽕 # 🐧 🐹 🐶 🐿️ 🐤
-        </div>
+        <div className="Logintt3"># 하 이 # juju # 코 린 이 들 # 쌈 @ 뽕 # 🐧 🐹 🐶 🐿️ 🐤</div>
       </div>
       <div className="login-form-mom">
         <form noValidate onSubmit={handleSubmit(onSubmit)} id="login-form">
@@ -63,9 +58,7 @@ function Login({ setNickname }) {
               type="email"
               id="LoginEmail"
               placeholder="  test@email.com"
-              aria-invalid={
-                isSubmitted ? (errors.email ? "true" : "false") : undefined
-              }
+              aria-invalid={isSubmitted ? (errors.email ? "true" : "false") : undefined}
               {...register("email", {
                 required: "이메일은 필수 입력입니다.",
                 pattern: {
@@ -75,9 +68,7 @@ function Login({ setNickname }) {
               })}
             />
             <div className="error-message">
-              {errors.email && (
-                <small role="alert">{errors.email.message}</small>
-              )}
+              {errors.email && <small role="alert">{errors.email.message}</small>}
             </div>
           </div>
 
@@ -89,9 +80,7 @@ function Login({ setNickname }) {
               type="password"
               id="LoginPs"
               placeholder="  Password"
-              aria-invalid={
-                isSubmitted ? (errors.password ? "true" : "false") : undefined
-              }
+              aria-invalid={isSubmitted ? (errors.password ? "true" : "false") : undefined}
               {...register("password", {
                 required: "비밀번호는 필수 입력입니다.",
                 minLength: {
@@ -101,9 +90,7 @@ function Login({ setNickname }) {
               })}
             />
             <div className="error-message">
-              {errors.password && (
-                <small role="alert">{errors.password.message}</small>
-              )}
+              {errors.password && <small role="alert">{errors.password.message}</small>}
             </div>
           </div>
 
@@ -113,18 +100,10 @@ function Login({ setNickname }) {
             </button>
           </div>
           <div className="Login_find">
-            <button
-              type="button"
-              id="Login_button2"
-              onClick={() => handleNavigate("/api/account")}
-            >
+            <button type="button" id="Login_button2" onClick={() => handleNavigate("/api/account")}>
               회원가입
             </button>
-            <button
-              type="button"
-              id="Login_button3"
-              onClick={() => handleNavigate("/api/find")}
-            >
+            <button type="button" id="Login_button3" onClick={() => handleNavigate("/api/find")}>
               비밀번호 찾기
             </button>
           </div>
