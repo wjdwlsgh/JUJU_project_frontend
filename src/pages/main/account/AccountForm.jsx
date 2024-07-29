@@ -252,9 +252,9 @@ function AccountForm() {
               </small>
             )}
           </div>
-          <div className="account7">
-            <button type="submit">회원가입</button>
-          </div>
+          <button type="submit" id="signup">
+            가입하기
+          </button>
         </div>
       </form>
     </div>

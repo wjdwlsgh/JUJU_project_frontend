@@ -16,11 +16,14 @@ const ChangePassword = ({ userEmail }) => {
 
   const handleSave = async () => {
     try {
-      const response = await axios.post("/api/changePassword", {
-        email: userEmail,
-        currentPassword,
-        newPassword,
-      });
+      const response = await axios.post(
+        "http://localhost:8080/api/changePassword",
+        {
+          email: userEmail,
+          currentPassword,
+          newPassword,
+        }
+      );
       console.log("Password updated:", response.data);
       alert("비밀번호 변경이 완료되었습니다!");
     } catch (error) {

@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const nodemailer = require("nodemailer");
 const multer = require("multer");
-const path = require("path"); // 추가된 부분
+const path = require("path");
 require("dotenv").config(); // 환경 변수 로드
 
 const app = express();
@@ -28,6 +28,7 @@ const users = [
     email: "test@example.com",
     birthDate: "2000-01-01",
     password: "originalPassword",
+    nickname: "testnickname",
   },
 ];
 const emailVerificationCodes = {};
@@ -37,6 +38,7 @@ const generateTempPassword = () => {
   return Math.random().toString(36).slice(-8); // 8자리 임시 비밀번호 생성
 };
 
+// 파일 업로드 설정
 const storage = multer.diskStorage({
   destination: "./uploads/",
   filename: (req, file, cb) => {
@@ -45,6 +47,7 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
+// 프로필 사진 업로드
 app.post(
   "/api/uploadProfilePicture",
   upload.single("profilePicture"),
@@ -60,14 +63,12 @@ app.post(
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-
 // Nodemailer 설정
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "jujucompany123@gmail.com", // 환경 변수에서 발신자 이메일
-    pass: "", // 환경 변수에서 앱 비밀번호
+    user: process.env.EMAIL_USER, // 환경 변수에서 발신자 이메일
+    pass: process.env.EMAIL_PASS, // 환경 변수에서 앱 비밀번호
   },
 });
 
@@ -85,7 +86,7 @@ app.post("/api/forgot-password", async (req, res) => {
 
     try {
       await transporter.sendMail({
-        from: "jujucompany123@gmail.com",
+        from: process.env.EMAIL_USER,
         to: email,
         subject: "임시 비밀번호 안내",
         text: `임시 비밀번호는 ${tempPassword}입니다.`,
@@ -115,7 +116,7 @@ app.post("/api/send-email-verification", (req, res) => {
   emailVerificationCodes[email] = verificationCode;
 
   const mailOptions = {
-    from: "jujucompany123@gmail.com",
+    from: process.env.EMAIL_USER,
     to: email,
     subject: "이메일 인증 코드",
     text: `인증 코드는 ${verificationCode} 입니다.`,
@@ -206,7 +207,7 @@ app.post("/api/todo", (req, res) => {
   const { title, start, end, color } = req.body;
 
   if (!title) {
-    return res.status(400).json({ error: "Title is required" });
+    return res.status(400).json({ error: "제목이 필요합니다." });
   }
 
   const newTodo = {
@@ -228,7 +229,7 @@ app.put("/api/todo/:id", (req, res) => {
 
   const todoIndex = todolist.findIndex((todo) => todo.id === parseInt(id));
   if (todoIndex === -1) {
-    return res.status(404).json({ error: "Todo not found" });
+    return res.status(404).json({ error: "할 일이 없습니다." });
   }
 
   if (title !== undefined) {
@@ -253,7 +254,7 @@ app.delete("/api/todo/:id", (req, res) => {
   const todoIndex = todolist.findIndex((todo) => todo.id === parseInt(id));
 
   if (todoIndex === -1) {
-    return res.status(404).json({ error: "Todo not found" });
+    return res.status(404).json({ error: "할 일이 없습니다." });
   }
 
   todolist.splice(todoIndex, 1);
@@ -278,6 +279,7 @@ app.post("/api/changePassword", (req, res) => {
   user.password = newPassword;
   res.json({ message: "비밀번호가 성공적으로 변경되었습니다." });
 });
+
 // 닉네임 변경 처리
 app.post("/api/changeNickname", (req, res) => {
   const { email, newNickname } = req.body;
