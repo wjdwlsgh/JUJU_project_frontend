@@ -6,7 +6,7 @@ const Modal2 = ({
   handleClose,
   handleSave,
   handleChange,
-  handleDelete, // 삭제 핸들러 추가
+  handleDelete,
   colorMap,
 }) => {
   // Helper function to format the date
@@ -18,12 +18,14 @@ const Modal2 = ({
   };
 
   return (
-    <div className="modal2">
+    <div
+      className="modal2"
+      role="dialog"
+      aria-labelledby="modal-title"
+      aria-hidden="true"
+    >
       <div className="modal-content2">
-        <span className="close" onClick={handleClose}>
-          &times;
-        </span>
-        <h2>일정을 수정하세요.</h2>
+        <h2 id="modal-title">일정을 수정하세요.</h2>
         <div className="schedule">
           <form className="modalform">
             <label htmlFor="title" className="col-form-label">
@@ -80,15 +82,20 @@ const Modal2 = ({
               </select>
             </label>
             <div className="modal-buttons">
-              <button type="button" onClick={handleSave}>
+              <button
+                type="button"
+                onClick={handleSave}
+                className="btn btn-primary"
+              >
                 Save
               </button>
-              <button type="button" onClick={handleDelete}>
+              <button
+                type="button"
+                onClick={handleDelete}
+                className="btn btn-danger"
+              >
                 Delete
               </button>
-              {/* <button type="button" onClick={handleClose}>
-                Cancel
-              </button> */}
             </div>
           </form>
         </div>

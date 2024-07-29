@@ -6,13 +6,21 @@ import "./ProfilePicture.css";
 const ProfilePicture = ({ onUpload, defaultImage }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState(defaultImage || mainImage); // 기본 이미지를 기본 상태로 설정
-
   const [uploadError, setUploadError] = useState(null);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
+    if (!file) {
+      setUploadError("파일을 선택하지 않았습니다.");
+      return;
+    }
+    if (!file.type.startsWith("image/")) {
+      setUploadError("이미지 파일만 업로드할 수 있습니다.");
+      return;
+    }
     setSelectedFile(file);
     setPreview(URL.createObjectURL(file));
+    setUploadError(null); // 오류 메시지 초기화
   };
 
   const handleUpload = async () => {
@@ -22,50 +30,27 @@ const ProfilePicture = ({ onUpload, defaultImage }) => {
     formData.append("profilePicture", selectedFile);
 
     try {
-      const response = await axios.post("/api/uploadProfilePicture", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      const imageUrl = response.data.url; // Adjust according to your API response
-      console.log("Image URL from server:", imageUrl); // Debug log
-      onUpload(imageUrl); // Notify parent component of the new profile picture URL
-      setUploadError(null); // Clear any previous error
+      const response = await axios.post(
+        "http://localhost:8080/api/uploadProfilePicture",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      const imageUrl = response.data.url; // API 응답에 따라 조정 필요
+      console.log("서버에서 받은 이미지 URL:", imageUrl); // 디버그 로그
+      onUpload(imageUrl); // 부모 컴포넌트에 새 이미지 URL 알림
+      setUploadError(null); // 이전 오류 지우기
     } catch (error) {
-      console.error("Error uploading profile picture:", error);
+      console.error("프로필 사진 업로드 오류:", error);
       setUploadError("프로필 사진 업로드를 실패하였습니다.");
     }
-    // alert("프로필 사진 수정이 완료되었습니다!");
   };
-
-  // const [selectedFile, setSelectedFile] = useState(null);
-  // const [preview, setPreview] = useState(null);
-
-  // const handleFileChange = (e) => {
-  //   setSelectedFile(e.target.files[0]);
-  //   setPreview(URL.createObjectURL(e.target.files[0]));
-  // };
-
-  // const handleUpload = async () => {
-  //   const formData = new FormData();
-  //   formData.append("profilePicture", selectedFile);
-
-  //   try {
-  //     const response = await axios.post("/api/uploadProfilePicture", formData, {
-  //       headers: {
-  //         "Content-Type": "multipart/form-data",
-  //       },
-  //     });
-  //     console.log("Profile picture uploaded:", response.data);
-  //   } catch (error) {
-  //     console.error("Error uploading profile picture:", error);
-  //   }
-  // };
 
   return (
     <div className="ProfilePicture-mom">
-      {/* <h2>프로필 사진 변경</h2> */}
-      {/* preview가 설정되어 있거나 selectedFile이 있는 경우에만 preview를 사용하고, 그렇지 않으면 기본 이미지 사용 */}
       <div className="file-select-div">
         <img
           className="img-section"

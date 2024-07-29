@@ -69,7 +69,7 @@ class Full extends Component {
       this.calendarRef.current.getApi().updateSize();
     }
   };
-  //clickTimeout
+
   handleDateClick = (arg) => {
     const { lastClickedDate, isDoubleClick } = this.state;
 
@@ -168,32 +168,49 @@ class Full extends Component {
       return;
     }
 
+    // Ensure end date is set correctly
     const updatedEvent = {
       id: editingEventId,
-      ...newEvent,
-      extendedProps: {
-        color: newEvent.color,
-      },
+      title: newEvent.title,
+      start: newEvent.start,
+      end: newEvent.end || newEvent.start, // Ensure end date is set
+      color: newEvent.color,
     };
 
-    // 서버로 데이터 업데이트
+    // Update event on server
     axios
-      .put(`http://localhost:8080/api/todo/${editingEventId}`, {
-        title: newEvent.title,
-        start: newEvent.start,
-        end: newEvent.end,
-        color: newEvent.color,
-      })
+      .put(`http://localhost:8080/api/todo/${editingEventId}`, updatedEvent)
       .then((response) => {
         console.log("Update success:", response.data);
-        this.setState({
-          events: events.map((event) =>
-            event.id === editingEventId ? response.data : event
-          ),
-          isModal2Open: false,
-          newEvent: { title: "", start: "", end: "", color: "" },
-          editingEventId: null,
-        });
+
+        // Fetch the updated events from the server
+        return axios.get("http://localhost:8080/api/todo");
+      })
+      .then((response) => {
+        // Process the updated events and update the state
+        const updatedEvents = response.data.map((item) => ({
+          id: item.id,
+          title: item.title,
+          start: item.start || new Date().toISOString(),
+          end: item.end || new Date().toISOString(),
+          backgroundColor: item.color || "blue",
+          extendedProps: {
+            color: item.color || "blue",
+          },
+        }));
+
+        this.setState(
+          {
+            events: updatedEvents,
+            isModal2Open: false,
+            newEvent: { title: "", start: "", end: "", color: "" },
+            editingEventId: null,
+          },
+          () => {
+            // Ensure events are updated in the calendar
+            this.calendarRef.current.getApi().refetchEvents();
+          }
+        );
       })
       .catch((error) => {
         console.error("Update error:", error);
