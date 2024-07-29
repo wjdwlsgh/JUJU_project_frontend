@@ -4,39 +4,33 @@ const app = express();
 const port = 8080;
 const nodemailer = require("nodemailer");
 
-// CORS 설정
 app.use(
   cors({
-    origin: "*", // 모든 출처 허용, 배포 시에는 필요한 출처만 허용하도록 설정
+    origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type"],
   })
 );
 
-// JSON 본문을 파싱합니다.
 app.use(express.json());
 
-// 메모리 내 데이터 저장소 및 ID 관리
 let idCounter = 1;
 const todolist = [];
 const users = [];
-const emailVerificationCodes = {}; // 이메일 인증 코드를 저장하는 객체
+const emailVerificationCodes = {};
 
-// Nodemailer 설정 (이 설정은 실제 메일 전송을 위해 구성되어야 합니다)
-const transporter = nodemailer.createTransport({
-  service: "gmail", // 예: 'gmail'
-  auth: {
-    user: "jujucompany123@gmail.com", // 발신자 이메일
-    pass: "abc123abc!@#", // 발신자 이메일 비밀번호
-  },
-});
-
-// 기본 경로 처리
 app.get("/", (req, res) => {
   res.send("Hello, this is the backend server for the ToDo app!");
 });
 
-// 이메일 인증 코드 전송 라우트
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "jujucompany123@gmail.com", // 발신자 이메일
+    pass: "sbrh uhel fjvk lzqm", // 생성한 앱 비밀번호
+  },
+});
+
 app.post("/api/send-email-verification", (req, res) => {
   const { email } = req.body;
   const existingUser = users.find((u) => u.email === email);
@@ -51,7 +45,7 @@ app.post("/api/send-email-verification", (req, res) => {
   emailVerificationCodes[email] = verificationCode;
 
   const mailOptions = {
-    from: "jujucompany@gmail.com",
+    from: "jujucompany123@gmail.com",
     to: email,
     subject: "이메일 인증 코드",
     text: `인증 코드는 ${verificationCode} 입니다.`,
@@ -59,6 +53,7 @@ app.post("/api/send-email-verification", (req, res) => {
 
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
+      console.error("이메일 전송 실패:", error);
       return res.status(500).json({ message: "이메일 전송 실패", error });
     }
     res.status(200).json({ message: "인증 코드가 이메일로 전송되었습니다." });
@@ -68,25 +63,24 @@ app.post("/api/send-email-verification", (req, res) => {
 // 이메일 인증 코드 확인 라우트
 app.post("/api/verify-email-code", (req, res) => {
   const { email, code } = req.body;
+  console.log(`Received request to verify code for email: ${email}`);
+
   const savedCode = emailVerificationCodes[email];
 
   if (savedCode && savedCode === code) {
+    console.log(`Verification code matched for email: ${email}`);
     delete emailVerificationCodes[email];
     res.status(200).json({ message: "이메일 인증 완료", verified: true });
   } else {
+    console.log(`Verification code did not match for email: ${email}`);
     res
       .status(400)
       .json({ message: "인증 코드가 유효하지 않습니다.", verified: false });
   }
 });
 
-app.get("/api/verify-email-code", (req, res) => {
-  res.json(emailVerificationCodes);
-});
-
-// 회원가입 라우트
 app.post("/api/register", (req, res) => {
-  console.log("회원가입 요청 데이터:", req.body); // 디버깅을 위한 로그
+  console.log("회원가입 요청 데이터:", req.body);
   const { fullName, nickname, email, password1, password2, birthDate } =
     req.body;
 
@@ -122,7 +116,6 @@ app.post("/api/register", (req, res) => {
   res.status(201).json({ message: "회원가입 성공", user: newUser });
 });
 
-// 로그인 라우트
 app.post("/api/login", (req, res) => {
   const { email, password } = req.body;
 
@@ -136,12 +129,10 @@ app.post("/api/login", (req, res) => {
   res.json({ message: "로그인 성공", user });
 });
 
-// GET /api/todo 라우트
 app.get("/api/todo", (req, res) => {
   res.json(todolist);
 });
 
-// POST /api/todo 라우트
 app.post("/api/todo", (req, res) => {
   const { title, start, end, color } = req.body;
 
@@ -161,7 +152,6 @@ app.post("/api/todo", (req, res) => {
   res.status(201).json(newTodo);
 });
 
-// PUT /api/todo/:id 라우트 (이벤트 업데이트)
 app.put("/api/todo/:id", (req, res) => {
   const { id } = req.params;
   const { title, start, end, color } = req.body;
@@ -187,7 +177,6 @@ app.put("/api/todo/:id", (req, res) => {
   res.json(todolist[todoIndex]);
 });
 
-// DELETE /api/todo/:id 라우트 (이벤트 삭제)
 app.delete("/api/todo/:id", (req, res) => {
   const { id } = req.params;
   const todoIndex = todolist.findIndex((todo) => todo.id === parseInt(id));

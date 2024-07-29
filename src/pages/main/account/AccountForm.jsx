@@ -13,8 +13,16 @@ function AccountForm() {
   } = useForm();
   const navigate = useNavigate();
   const [emailSent, setEmailSent] = useState(false);
+  const [isVerified, setIsVerified] = useState(false);
+  const [verificationLoading, setVerificationLoading] = useState(false);
+  const [emailSending, setEmailSending] = useState(false);
 
   const onSubmit = async (data) => {
+    if (!isVerified) {
+      alert("이메일 인증을 완료해주세요.");
+      return;
+    }
+
     try {
       const response = await axios.post(
         "http://localhost:8080/api/register",
@@ -34,6 +42,11 @@ function AccountForm() {
 
   const sendVerificationCode = async () => {
     const email = getValues("email");
+    if (!email) {
+      alert("이메일을 입력해주세요.");
+      return;
+    }
+    setEmailSending(true);
     try {
       const response = await axios.post(
         "http://localhost:8080/api/send-email-verification",
@@ -48,6 +61,39 @@ function AccountForm() {
         "이메일 인증 코드 전송 실패: " +
           (error.response?.data?.message || error.message)
       );
+    } finally {
+      setEmailSending(false);
+    }
+  };
+
+  const verifyCode = async () => {
+    const email = getValues("email");
+    const verificationCode = getValues("verificationCode");
+    if (!verificationCode) {
+      alert("인증 코드를 입력해주세요.");
+      return;
+    }
+    setVerificationLoading(true);
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/verify-email-code",
+        { email, code: verificationCode }
+      );
+      console.log("이메일 인증 코드 확인 응답:", response.data);
+      if (response.data.verified) {
+        alert("이메일 인증이 완료되었습니다.");
+        setIsVerified(true);
+      } else {
+        alert("인증 코드가 올바르지 않습니다.");
+      }
+    } catch (error) {
+      console.error("이메일 인증 코드 확인 실패:", error);
+      alert(
+        "이메일 인증 코드 확인 실패: " +
+          (error.response?.data?.message || error.message)
+      );
+    } finally {
+      setVerificationLoading(false);
     }
   };
 
@@ -114,6 +160,7 @@ function AccountForm() {
                 {errors.email.message}
               </small>
             )}
+<<<<<<< HEAD
             <button
               type="button"
               className="mailcode"
@@ -122,6 +169,18 @@ function AccountForm() {
               인증 코드 전송
             </button>
             {emailSent && (
+=======
+            {!emailSent && (
+              <button
+                type="button"
+                onClick={sendVerificationCode}
+                disabled={emailSending}
+              >
+                {emailSending ? "전송 중..." : "인증 코드 전송"}
+              </button>
+            )}
+            {emailSent && !isVerified && (
+>>>>>>> 7442928cb035e628b80056b4e45cad27a9da503f
               <div className="account3">
                 <p className="account_name">인증 코드</p>
                 <input
@@ -136,6 +195,15 @@ function AccountForm() {
                   <small className="Accountsmall" role="alert">
                     {errors.verificationCode.message}
                   </small>
+                )}
+                {!isVerified && (
+                  <button
+                    type="button"
+                    onClick={verifyCode}
+                    disabled={verificationLoading}
+                  >
+                    {verificationLoading ? "확인 중..." : "인증 코드 확인"}
+                  </button>
                 )}
               </div>
             )}
