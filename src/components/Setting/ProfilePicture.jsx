@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
 import mainImage from "../../assets/imgs/main.png";
+import { toast } from "react-toastify"; // react-toastify 모듈 임포트
+import "react-toastify/dist/ReactToastify.css"; // toast 스타일 임포트
 import "./ProfilePicture.css";
 
 const ProfilePicture = ({ onUpload, defaultImage }) => {
   const [selectedFile, setSelectedFile] = useState(null);
-  const [preview, setPreview] = useState(defaultImage || mainImage); // 기본 이미지를 기본 상태로 설정
+  const [preview, setPreview] = useState(defaultImage || mainImage);
   const [uploadError, setUploadError] = useState(null);
 
   const handleFileChange = (e) => {
@@ -20,7 +22,7 @@ const ProfilePicture = ({ onUpload, defaultImage }) => {
     }
     setSelectedFile(file);
     setPreview(URL.createObjectURL(file));
-    setUploadError(null); // 오류 메시지 초기화
+    setUploadError(null);
   };
 
   const handleUpload = async () => {
@@ -39,13 +41,16 @@ const ProfilePicture = ({ onUpload, defaultImage }) => {
           },
         }
       );
-      const imageUrl = response.data.url; // API 응답에 따라 조정 필요
-      console.log("서버에서 받은 이미지 URL:", imageUrl); // 디버그 로그
-      onUpload(imageUrl); // 부모 컴포넌트에 새 이미지 URL 알림
-      setUploadError(null); // 이전 오류 지우기
+      const imageUrl = response.data.url;
+      console.log("서버에서 받은 이미지 URL:", imageUrl);
+      const fullImageUrl = `http://localhost:8080${imageUrl}`;
+      onUpload(fullImageUrl);
+      setUploadError(null);
+      toast.success("프로필 사진이 성공적으로 업로드되었습니다."); // 성공 toast 메시지
     } catch (error) {
       console.error("프로필 사진 업로드 오류:", error);
       setUploadError("프로필 사진 업로드를 실패하였습니다.");
+      toast.error("프로필 사진 업로드를 실패하였습니다."); // 실패 toast 메시지
     }
   };
 
