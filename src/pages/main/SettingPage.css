@@ -102,6 +102,7 @@
   background-color: transparent;
   font-family: "Cafe24Meongi-W-v1.0";
   align-items: center;
+  cursor: pointer;
 }
 
 .mypage-top-left:hover {
