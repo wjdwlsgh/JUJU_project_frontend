@@ -45,7 +45,9 @@ function Find() {
     <div className="find-wrapper">
       <div className="Findtt">
         <div className="Accounttt2">
-          <button onClick={() => navigate("/")}>JUJU__Calendar_</button>
+          <button className="Find_button" onClick={() => navigate("/")}>
+            JUJU__Calendar_
+          </button>
         </div>
         <div className="Findtt3">
           # 하 이 # juju # 코 린 이 들 # 쌈 @ 뽕 # 🐧 🐹 🐶 🐿️ 🐤

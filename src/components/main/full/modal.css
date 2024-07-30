@@ -13,17 +13,24 @@
   background-color: rgba(0, 0, 0, 0.4);
 }
 
+.modalform {
+  display: flex;
+}
+
 .modal-content {
   font-family: "Ownglyph_ryurue-Rg";
-  font-size: 20px;
+  font-size: 1.25em; /* 상대적인 글꼴 크기 */
   background-color: #f9dddd;
-  margin: 15% auto;
-  padding: 20px;
-  border: 7px ridge #e6b7b7;
+  margin: auto;
+  padding: 2em;
+  border: 0.5em ridge #e6b7b7;
   border-radius: 10%;
   width: 30%;
-  height: 70%;
-  position: fixed;
+  max-width: 600px; /* 최대 너비를 설정하여 큰 화면에서도 적절하게 표시되도록 합니다 */
+  height: auto;
+  min-height: 400px;
+  box-sizing: border-box; /* 패딩과 테두리를 요소의 전체 너비와 높이에 포함시킵니다 */
+  position: relative;
 }
 
 .close {
@@ -67,14 +74,14 @@
   width: 100%; /* 입력 필드의 너비를 100%로 설정하여 부모 요소의 너비에 맞추도록 합니다 */
   height: 45px; /* 입력 필드의 높이를 설정합니다 */
   padding: 10px; /* 입력 필드의 패딩을 추가합니다 */
-  font-size: 16px; /* 입력 필드의 텍스트 크기를 설정합니다 */
+  font-size: 20px; /* 입력 필드의 텍스트 크기를 설정합니다 */
   margin-top: 5px; /* 입력 필드와 라벨 사이의 간격을 추가합니다 */
   box-sizing: border-box; /* 패딩과 테두리가 요소의 전체 너비와 높이에 포함되도록 합니다 */
 }
 .modalform label {
   margin-bottom: 20px; /* 라벨 사이의 간격을 추가합니다 */
   padding: 10px 0; /* 라벨의 세로 패딩을 추가합니다 */
-  font-size: 20px; /* 라벨 텍스트 크기 (기본값) */
+  font-size: 23px; /* 라벨 텍스트 크기 (기본값) */
   line-height: 1.5; /* 줄 높이 조정 */
 }
 
@@ -127,4 +134,8 @@
   padding: 20px; /* 더 나은 외관을 위한 패딩 추가 */
   font-size: 25px; /* 글자 크기 조정 */
   background-color: #f0f0f0; /* 배경색 조정 */
+}
+
+#color.form-control {
+  font-size: 23px;
 }

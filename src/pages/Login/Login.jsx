@@ -27,13 +27,13 @@ function Login({ setNickname }) {
 
       // 로그인 성공 시 닉네임 업데이트
       if (setNickname && typeof setNickname === "function") {
-        setNickname(response.data.user.nickname); // 서버 응답에 따라 적절한 필드로 설정
+        setNickname(response.data.nickname); // 서버 응답에 따라 적절한 필드로 설정
       } else {
         console.error("setNickname은 함수가 아닙니다.");
       }
 
       // 로컬 스토리지에 사용자 정보 저장
-      localStorage.setItem("userNickname", response.data.user.nickname);
+      localStorage.setItem("userNickname", response.data.nickname);
       localStorage.setItem("userEmail", data.email);
 
       alert("로그인 성공");
@@ -54,7 +54,10 @@ function Login({ setNickname }) {
       </div>
       <div className="login-form-mom">
         <form noValidate onSubmit={handleSubmit(onSubmit)} id="login-form">
-          <h2 id="Login_Title">로그인🔓</h2>
+          <h2 id="Login_Title">
+            <div className="Pig">🐷</div> Welcome
+            <div className="Pig2">🐷</div>
+          </h2>
           <div className="Login_text1">
             <label htmlFor="LoginEmail" className="Login_text_title">
               이메일

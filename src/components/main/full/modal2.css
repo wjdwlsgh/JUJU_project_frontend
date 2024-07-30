@@ -10,29 +10,79 @@
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content2 {
-  background-color: #fefefe;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
+  font-family: "Ownglyph_ryurue-Rg";
+  font-size: 1.25em; /* 상대적인 글꼴 크기 */
+  background-color: #f9dddd;
+  margin: auto;
+  padding: 2em;
+  border: 0.5em ridge #e6b7b7;
+  border-radius: 10%;
   width: 30%;
-  height: 60%;
+  max-width: 600px; /* 최대 너비를 설정하여 큰 화면에서도 적절하게 표시되도록 합니다 */
+  height: auto;
+  min-height: 400px;
+  box-sizing: border-box; /* 패딩과 테두리를 요소의 전체 너비와 높이에 포함시킵니다 */
+  position: relative;
 }
 
 .close {
   color: #aaa;
   float: right;
-  font-size: 28px;
+  font-size: 1.75em; /* 상대적인 글꼴 크기 */
   font-weight: bold;
+  cursor: pointer;
 }
 
 .close:hover,
 .close:focus {
   color: black;
   text-decoration: none;
+}
+
+.form-control {
+  width: 100%;
+  height: 45px;
+  padding: 10px;
+  font-size: 1em; /* 상대적인 글꼴 크기 */
+  margin-top: 5px;
+  box-sizing: border-box;
+}
+
+.col-form-label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  font-size: 1.2em; /* 상대적인 글꼴 크기 */
+}
+
+.modal-buttons {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.modal-buttons button {
+  background-color: #e6b7b7;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 5px;
+  border-radius: 5px;
   cursor: pointer;
+  font-family: "Ownglyph_ryuttung-Rg";
+  font-size: 1em; /* 상대적인 글꼴 크기 */
+}
+
+.modal-buttons button:hover {
+  border-color: #e6b7b7;
+  color: white;
+  box-shadow: 0 0.6em 0.6em -0.4em #ecd1d1;
+}
+
+/* 색상 선택 */
+#color.form-control {
+  font-size: 1em; /* 상대적인 글꼴 크기 */
 }

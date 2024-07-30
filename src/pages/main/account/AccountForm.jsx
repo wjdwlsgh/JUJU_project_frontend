@@ -51,7 +51,9 @@ function AccountForm() {
     try {
       const response = await axios.post(
         "http://localhost:8080/api/send-email-verification",
-        { email }
+        {
+          email,
+        }
       );
       console.log("이메일 인증 코드 전송 응답:", response.data);
       alert("인증 코드가 이메일로 전송되었습니다.");
@@ -78,10 +80,11 @@ function AccountForm() {
     try {
       const response = await axios.post(
         "http://localhost:8080/api/verify-email-code",
-        { email, code: verificationCode }
+        { email, code: verificationCode },
+        { timeout: 5000 }
       );
       console.log("이메일 인증 코드 확인 응답:", response.data);
-      if (response.data.verified) {
+      if (response.data) {
         alert("이메일 인증이 완료되었습니다.");
         setIsVerified(true);
       } else {
@@ -102,7 +105,9 @@ function AccountForm() {
     <div className="account-wrapper">
       <div className="Accounttt">
         <div className="Accounttt2">
-          <button onClick={() => navigate("/")}>JUJU__Calendar_</button>
+          <button className="Account_button" onClick={() => navigate("/")}>
+            JUJU__Calendar_
+          </button>
         </div>
         <div className="Accounttt3">
           # 하 이 # juju # 코 린 이 들 # 쌈 @ 뽕 # 🐧 🐹 🐶 🐿️ 🐤
