@@ -10,7 +10,7 @@
 .Findtt {
   display: flex;
   width: 100%;
-  height: 9%;
+  height: 10%;
   /* background-color: #f1d7ae; */
   background-color: #d1beb0ee;
   align-content: center;
@@ -139,9 +139,10 @@
   width: 50%;
   text-align: left;
   font-family: "Cafe24Meongi-W-v1.0";
-  font-size: 25px;
+  font-size: 50px;
   border: none;
   background-color: #d1beb0ee;
+  color: #7e7464;
   cursor: pointer;
 }
 #Findbutton {
