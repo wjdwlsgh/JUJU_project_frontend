@@ -66,11 +66,10 @@ function AccountForm() {
     }
     setVerificationLoading(true);
     try {
-      const response = await axios.post(
-        "http://localhost:8080/api/verify-email-code",
-        { email, code: verificationCode },
-        { timeout: 5000 }
-      );
+      const response = await axios.post("http://localhost:8080/api/verify-email-code", {
+        email,
+        code: verificationCode,
+      });
       console.log("이메일 인증 코드 확인 응답:", response.data);
       if (response.data) {
         alert("이메일 인증이 완료되었습니다.");

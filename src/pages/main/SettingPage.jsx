@@ -65,11 +65,7 @@ const SettingPage = ({ userEmail, setProfilePicture, setNickname }) => {
 
       <div className="mypage-buttons">
         <button className="home-button" onClick={handleHomeClick}>
-          <img
-            src={homeImage}
-            alt="설정 아이콘"
-            style={{ width: "30px", height: "25px" }}
-          />
+          <img src={homeImage} alt="설정 아이콘" style={{ width: "30px", height: "25px" }} />
           홈으로
         </button>
       </div>

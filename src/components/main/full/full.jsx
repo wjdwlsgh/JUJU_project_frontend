@@ -42,7 +42,7 @@ class Full extends Component {
       .get("http://localhost:8080/api/todo")
       .then((response) => {
         const events = response.data.map((item) => ({
-          id: item.id,
+          email: item.email,
           title: item.title,
           start: item.start || new Date().toISOString(),
           end: item.end || new Date().toISOString(),
@@ -98,7 +98,7 @@ class Full extends Component {
   handleEventClick = (arg) => {
     this.setState({
       isModal2Open: true,
-      editingEventId: arg.event.id,
+      editingEventId: arg.event.email,
       newEvent: {
         title: arg.event.title || "",
         start: arg.event.startStr || "",
@@ -130,7 +130,7 @@ class Full extends Component {
     }
 
     const newEvent = {
-      id: new Date().getTime().toString(),
+      email: new Date().getTime().toString(),
       ...this.state.newEvent,
       extendedProps: {
         color: this.state.newEvent.color,
@@ -294,12 +294,7 @@ class Full extends Component {
           <FullCalendar
             key={this.state.events.length} // key 추가
             ref={this.calendarRef}
-            plugins={[
-              dayGridPlugin,
-              timeGridPlugin,
-              listPlugin,
-              interactionPlugin,
-            ]}
+            plugins={[dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin]}
             initialView="dayGridMonth"
             headerToolbar={{
               left: "prev,next today addEventButton",

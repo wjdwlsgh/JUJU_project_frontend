@@ -12,13 +12,10 @@ const Nickname = ({ userEmail, value, onChange, onSubmit }) => {
 
   const handleSave = async () => {
     try {
-      const response = await axios.post(
-        "http://localhost:8080/api/changeNickname",
-        {
-          email: userEmail,
-          newNickname,
-        }
-      );
+      const response = await axios.put("http://localhost:8080/api/changeNickname", {
+        email: userEmail,
+        newNickname,
+      });
       console.log("Nickname updated:", response.data);
       onSubmit(); // Call the parent component's submit handler
       alert("닉네임 변경이 완료되었습니다!");

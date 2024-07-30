@@ -12,6 +12,12 @@ const Main = ({ profilePicture, nickname }) => {
   });
 
   useEffect(() => {
+    if (profilePicture) {
+      setCurrentProfilePicture(profilePicture);
+    }
+  }, [profilePicture]);
+
+  useEffect(() => {
     localStorage.setItem("userProfilePicture", currentProfilePicture);
   }, [currentProfilePicture]);
 
@@ -40,9 +46,7 @@ const Main = ({ profilePicture, nickname }) => {
           </div>
         </div>
 
-        <div className="left_container2">
-          {/* ProfilePicture component has been removed */}
-        </div>
+        <div className="left_container2">{/* ProfilePicture component has been removed */}</div>
       </div>
 
       <main className="content">
