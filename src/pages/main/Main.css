@@ -122,3 +122,8 @@ header {
   box-shadow: 3px 3px #d79999;
   border-radius: 5%;
 }
+
+#profile-img {
+  width: 80%;
+  height: 70%;
+}
