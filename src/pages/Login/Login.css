@@ -17,7 +17,7 @@
 
 #login-form {
   align-content: center;
-  width: 50%;
+  width: 40%;
   /* max-width: 700px; 최대 너비 설정 */
   height: 100%;
   /* min-height: 600px; */
@@ -124,7 +124,7 @@
   width: 100%; /* 부모 요소의 너비에 맞춤 */
   max-width: 200px;
   margin: 10px 0 10px 10px;
-  height: 50px;
+  height: 40px;
   cursor: pointer;
   margin-top: 20px;
   /* font-family: "Ownglyph_UNZ-Rg"; */
@@ -172,7 +172,8 @@
   text-align: left;
   margin-left: 30px;
   font-family: "Cafe24Meongi-W-v1.0";
-  font-size: 25px;
+  font-size: 30px;
+  color: white;
 }
 
 .Logintt3 {
@@ -182,6 +183,7 @@
   font-family: "Ownglyph_UNZ-Rg";
   font-size: 23px;
   font-weight: 200px;
+  color: #ad9087;
 }
 
 #Login_button:hover {
