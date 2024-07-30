@@ -25,7 +25,7 @@ const SettingPage = ({ userEmail, setProfilePicture, setNickname }) => {
     <div className="mypage">
       <div id="mypage-top">
         <div className="mypage-top-left">
-          <button className="mypage-top-left" onClick={handleHomeClick}>
+          <button className="mypage-top-left-button" onClick={handleHomeClick}>
             🏠 JUJU-MY-PAGE
           </button>
         </div>
