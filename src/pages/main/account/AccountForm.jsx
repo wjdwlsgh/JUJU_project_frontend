@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import "./JUJU_account.css";
+// import "./JUJU_account.css";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import "./AccountForm.css";
 
 function AccountForm() {
   const {
@@ -110,10 +111,16 @@ function AccountForm() {
 
       <form onSubmit={handleSubmit(onSubmit)} id="account-form">
         <div className="account-mom">
-          <h2>회원가입</h2>
+          <div className="title-mom">
+            <div id="frog">🐸</div>
+            <div className="title">create account</div>
+            <div id="frog">🐸</div>
+          </div>
+
           <div className="account1">
             <p className="account_name">이름</p>
             <input
+              className="input-name"
               type="text"
               name="fullName"
               placeholder="Full Name"
@@ -128,6 +135,7 @@ function AccountForm() {
           <div className="account2">
             <p className="account_name">닉네임</p>
             <input
+              className="input-nickname"
               type="text"
               name="nickname"
               placeholder="Nickname"
@@ -144,6 +152,7 @@ function AccountForm() {
           <div className="account3">
             <p className="account_name">이메일</p>
             <input
+              className="input-email"
               type="email"
               name="email"
               placeholder="Email"
@@ -201,6 +210,7 @@ function AccountForm() {
           <div className="account4">
             <p className="account_name">비밀번호</p>
             <input
+              className="input-password"
               type="password"
               name="password1"
               placeholder="Password"
@@ -221,6 +231,7 @@ function AccountForm() {
           <div className="account5">
             <p className="account_name">비밀번호 확인</p>
             <input
+              className="input-check-password"
               type="password"
               name="password2"
               placeholder="Confirm Password"
@@ -240,6 +251,7 @@ function AccountForm() {
           <div className="account6">
             <p className="account_name">생년월일</p>
             <input
+              className="input-birthday"
               type="date"
               name="birthDate"
               {...register("birthDate", {
