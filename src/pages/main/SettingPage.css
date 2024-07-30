@@ -4,8 +4,6 @@
 
   width: 100%;
   height: 100%;
-  padding: 0%;
-  margin: 0%;
 }
 
 .mypage-table {
@@ -50,7 +48,31 @@
   display: flex;
   width: 100%;
 }
+.mypage-top-left {
+  height: 100%;
+  background-color: #a4c6eb;
+  display: flex;
+  width: 50%;
+  justify-items: center;
+}
 
+.mypage-top-right {
+  display: flex;
+  width: 50%;
+  justify-content: flex-end;
+  font-family: "Ownglyph_UNZ-Rg";
+  font-size: 25px;
+  color: #fff0ea;
+}
+
+.mypage-top-left-button {
+  align-items: center;
+  cursor: pointer;
+}
+
+.mypage-top-left-button:hover {
+  color: navy;
+}
 .mypage-th {
   width: 20%;
   padding: 0px;
@@ -88,15 +110,6 @@
 
 .mypage-top-left:hover {
   color: #76819e;
-}
-
-.mypage-top-right {
-  width: 50%;
-  text-align: right;
-  margin-right: 20px;
-  font-family: "Ownglyph_UNZ-Rg";
-  font-size: 25px;
-  color: #fff0ea;
 }
 
 /* .mypage-top-right-logo {
