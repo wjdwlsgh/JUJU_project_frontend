@@ -15,12 +15,19 @@
 }
 
 .modal-content2 {
-  background-color: #fefefe;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
+  font-family: "Ownglyph_ryurue-Rg";
+  font-size: 1.25em; /* 상대적인 글꼴 크기 */
+  background-color: #f9dddd;
+  margin: auto;
+  padding: 2em;
+  border: 0.5em ridge #e6b7b7;
+  border-radius: 10%;
   width: 30%;
-  height: 60%;
+  max-width: 600px; /* 최대 너비를 설정하여 큰 화면에서도 적절하게 표시되도록 합니다 */
+  height: auto;
+  min-height: 400px;
+  box-sizing: border-box; /* 패딩과 테두리를 요소의 전체 너비와 높이에 포함시킵니다 */
+  position: relative;
 }
 
 .close {
