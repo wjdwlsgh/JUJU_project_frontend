@@ -10,7 +10,6 @@
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
 }
 
@@ -33,13 +32,57 @@
 .close {
   color: #aaa;
   float: right;
-  font-size: 28px;
+  font-size: 1.75em; /* 상대적인 글꼴 크기 */
   font-weight: bold;
+  cursor: pointer;
 }
 
 .close:hover,
 .close:focus {
   color: black;
   text-decoration: none;
+}
+
+.form-control {
+  width: 100%;
+  height: 45px;
+  padding: 10px;
+  font-size: 1em; /* 상대적인 글꼴 크기 */
+  margin-top: 5px;
+  box-sizing: border-box;
+}
+
+.col-form-label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  font-size: 1.2em; /* 상대적인 글꼴 크기 */
+}
+
+.modal-buttons {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.modal-buttons button {
+  background-color: #e6b7b7;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 5px;
+  border-radius: 5px;
   cursor: pointer;
+  font-family: "Ownglyph_ryuttung-Rg";
+  font-size: 1em; /* 상대적인 글꼴 크기 */
+}
+
+.modal-buttons button:hover {
+  border-color: #e6b7b7;
+  color: white;
+  box-shadow: 0 0.6em 0.6em -0.4em #ecd1d1;
+}
+
+/* 색상 선택 */
+#color.form-control {
+  font-size: 1em; /* 상대적인 글꼴 크기 */
 }

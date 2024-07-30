@@ -24,14 +24,19 @@ function AccountForm() {
     }
 
     try {
-      const response = await axios.post("http://localhost:8080/api/register", data);
+      const response = await axios.post(
+        "http://localhost:8080/api/register",
+        data
+      );
       console.log("회원가입 응답:", response.data);
 
       alert("회원가입 성공");
       navigate("/"); // 회원가입 후 로그인 페이지로 이동
     } catch (error) {
       console.error("회원가입 실패:", error);
-      alert("회원가입 실패: " + (error.response?.data?.message || error.message));
+      alert(
+        "회원가입 실패: " + (error.response?.data?.message || error.message)
+      );
     }
   };
 
@@ -43,15 +48,21 @@ function AccountForm() {
     }
     setEmailSending(true);
     try {
-      const response = await axios.post("http://localhost:8080/api/send-email-verification", {
-        email,
-      });
+      const response = await axios.post(
+        "http://localhost:8080/api/send-email-verification",
+        {
+          email,
+        }
+      );
       console.log("이메일 인증 코드 전송 응답:", response.data);
       alert("인증 코드가 이메일로 전송되었습니다.");
       setEmailSent(true);
     } catch (error) {
       console.error("이메일 인증 코드 전송 실패:", error);
-      alert("이메일 인증 코드 전송 실패: " + (error.response?.data?.message || error.message));
+      alert(
+        "이메일 인증 코드 전송 실패: " +
+          (error.response?.data?.message || error.message)
+      );
     } finally {
       setEmailSending(false);
     }
@@ -80,7 +91,10 @@ function AccountForm() {
       }
     } catch (error) {
       console.error("이메일 인증 코드 확인 실패:", error);
-      alert("이메일 인증 코드 확인 실패: " + (error.response?.data?.message || error.message));
+      alert(
+        "이메일 인증 코드 확인 실패: " +
+          (error.response?.data?.message || error.message)
+      );
     } finally {
       setVerificationLoading(false);
     }
@@ -90,9 +104,13 @@ function AccountForm() {
     <div className="account-wrapper">
       <div className="Accounttt">
         <div className="Accounttt2">
-          <button onClick={() => navigate("/")}>JUJU__Calendar_</button>
+          <button className="Account_button" onClick={() => navigate("/")}>
+            JUJU__Calendar_
+          </button>
         </div>
-        <div className="Accounttt3"># 하 이 # juju # 코 린 이 들 # 쌈 @ 뽕 # 🐧 🐹 🐶 🐿️ 🐤</div>
+        <div className="Accounttt3">
+          # 하 이 # juju # 코 린 이 들 # 쌈 @ 뽕 # 🐧 🐹 🐶 🐿️ 🐤
+        </div>
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} id="account-form">
@@ -152,7 +170,8 @@ function AccountForm() {
                 type="button"
                 onClick={sendVerificationCode}
                 disabled={emailSending}
-                className="emailcode">
+                className="emailcode"
+              >
                 {emailSending ? "전송 중..." : "인증 코드 전송"}
               </button>
             )}
@@ -173,7 +192,11 @@ function AccountForm() {
                   </small>
                 )}
                 {!isVerified && (
-                  <button type="button" onClick={verifyCode} disabled={verificationLoading}>
+                  <button
+                    type="button"
+                    onClick={verifyCode}
+                    disabled={verificationLoading}
+                  >
                     {verificationLoading ? "확인 중..." : "인증 코드 확인"}
                   </button>
                 )}
@@ -209,7 +232,8 @@ function AccountForm() {
               {...register("password2", {
                 required: "비밀번호 확인은 필수 입력입니다.",
                 validate: (value) =>
-                  value === getValues("password1") || "비밀번호가 일치하지 않습니다.",
+                  value === getValues("password1") ||
+                  "비밀번호가 일치하지 않습니다.",
               })}
             />
             {errors.password2 && (
