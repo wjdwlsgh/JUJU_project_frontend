@@ -110,6 +110,8 @@ header {
 }
 
 .setting-icon-div {
+  display: flex;
+  flex-direction: row;
   height: 20%;
   width: 100%;
 }
