@@ -33,10 +33,11 @@ const Main = ({ profilePicture, nickname }) => {
 
           <div className="profile-info">
             <img
+              id="profile-img"
               src={currentProfilePicture}
               alt="Profile"
               className="profile-picture"
-              style={{ width: "150px", height: "150px" }}
+              // style={{ width: "150px", height: "150px" }}
             />
             <div className="nickname"> {nickname}님 </div>
           </div>

@@ -9,12 +9,13 @@ const Modal2 = ({
   handleDelete,
   colorMap,
 }) => {
-  // Helper function to format the date
+  // Helper function to format the date to 'yyyy-MM-ddThh:mm'
   const formatDate = (date) => {
     if (!date) return ""; // Return empty string if no date is provided
-    // Convert to ISO string and extract date and time
-    const isoString = new Date(date).toISOString();
-    return isoString.slice(0, 16); // Extract 'yyyy-MM-ddThh:mm'
+
+    const local = new Date(date);
+    local.setMinutes(local.getMinutes() - local.getTimezoneOffset());
+    return local.toISOString().slice(0, 16); // Extract 'yyyy-MM-ddThh:mm'
   };
 
   return (
@@ -25,6 +26,9 @@ const Modal2 = ({
       aria-hidden="true"
     >
       <div className="modal-content2">
+        <span className="close" onClick={handleClose}>
+          &times;
+        </span>
         <h2 id="modal-title">일정을 수정하세요.</h2>
         <div className="schedule">
           <form className="modalform">

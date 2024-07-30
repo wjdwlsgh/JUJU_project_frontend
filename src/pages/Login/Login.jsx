@@ -52,7 +52,10 @@ function Login({ setNickname, setProfilePicture }) {
       </div>
       <div className="login-form-mom">
         <form noValidate onSubmit={handleSubmit(onSubmit)} id="login-form">
-          <h2 id="Login_Title">로그인🔓</h2>
+          <h2 id="Login_Title">
+            <div className="Pig">🐷</div> Welcome
+            <div className="Pig2">🐷</div>
+          </h2>
           <div className="Login_text1">
             <label htmlFor="LoginEmail" className="Login_text_title">
               이메일

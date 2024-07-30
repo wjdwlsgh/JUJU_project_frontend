@@ -5,14 +5,14 @@
   overflow: hidden;
   display: flex; /* Flexbox 사용 */
   flex-direction: column; /* 세로 방향으로 배치 */
-  background-color: #fffbf9d0;
+  background-color: #eee1d0;
 }
 .Findtt {
   display: flex;
   width: 100%;
-  height: 9%;
+  height: 10%;
   /* background-color: #f1d7ae; */
-  background-color: #ebd5c5ee;
+  background-color: #d1beb0ee;
   align-content: center;
   align-items: center;
   /* box-shadow: white 1px 1px 1px 3px; */
@@ -26,6 +26,7 @@
   font-size: 40px;
   color: #a78f7eee;
   text-shadow: 5px 5px white;
+  background-color: #ebd5c5ee;
 }
 
 .Findtt3 {
@@ -59,10 +60,10 @@
   align-content: center;
   display: flex; /* Flexbox 사용 */
   flex-direction: column; /* 세로 방향으로 배치 */
-  background-color: #ffebdf;
-  box-shadow: 10px 10px #dec5b5c2;
+  background-color: #a0704b4b;
+  box-shadow: 10px 10px #ceb8a9c2;
   border-radius: 50px;
-  margin-top: 2%;
+  margin-top: 5%;
 }
 
 .find-form-mom {
@@ -76,7 +77,7 @@
   font-size: 60px;
   /* margin-bottom: 10%; */
   font-style: normal;
-  color: #f8c978;
+  color: #946c37;
   text-align: center;
   /* font-family: "Ownglyph_ryurue-Rg"; */
   font-family: "Cafe24Meongi-W-v1.0";
@@ -118,7 +119,7 @@
   text-align: center;
   /* font-family: "Ownglyph_ryurue-Rg"; */
   font-family: "insungitCutelivelyjisu";
-  color: #baab9f;
+  color: #8b785e;
   font-size: 30px;
 }
 
@@ -134,8 +135,18 @@
   background-color: #fdf8f0;
 }
 
+.Find_button {
+  width: 50%;
+  text-align: left;
+  font-family: "Cafe24Meongi-W-v1.0";
+  font-size: 50px;
+  border: none;
+  background-color: #d1beb0ee;
+  color: #7e7464;
+  cursor: pointer;
+}
 #Findbutton {
-  background-color: #ded9a9;
+  background-color: #d6d0b7;
   border-radius: 50px;
   width: 100%; /* 부모 요소의 너비에 맞춤 */
   max-width: 200px; /* 최대 너비 설정 */
@@ -146,17 +157,17 @@
   /* font-family: "Ownglyph_ryurue-Rg"; */
   font-family: "insungitCutelivelyjisu";
   font-size: 25px;
-  border: none;
+
   text-align: center;
-  border: 2px solid #aea985;
+  border: 2px solid #8b7959;
 }
 
 #Findbutton:hover {
-  background-color: #c9c17b;
+  background-color: #d1c496;
   transition-duration: 0.5s;
   margin-left: 2px;
   margin-top: 2px;
-  box-shadow: 5px 5px #96916c;
+  box-shadow: 5px 5px #dbcbaf;
 }
 
 #fullName {
@@ -166,7 +177,7 @@
   font-size: 25px;
   margin-left: 6%;
   border-radius: 50px;
-  background-color: #f1d7ae;
+  background-color: #f1e2ab;
   /* border: 2px solid #baab9f; */
   /* box-shadow: 3px 3px #a29d81db; */
   padding: 15px;
@@ -175,7 +186,7 @@
 }
 
 #fullName:hover {
-  background-color: #e2b493;
+  background-color: #f5db80;
   transition-duration: 0.6s;
 }
 
@@ -191,7 +202,7 @@
   font-size: 25px;
   margin-left: 6%;
   border-radius: 50px;
-  background-color: #f8dfb6;
+  background-color: #f1e2ab;
   /* border: 2px solid #baab9f; */
   /* box-shadow: 3px 3px #a29d81db; */
   padding: 15px;
@@ -204,7 +215,7 @@
 }
 
 #email:hover {
-  background-color: #e2b493;
+  background-color: #f5db80;
   transition-duration: 0.6s;
 }
 
@@ -215,7 +226,7 @@
   font-size: 22px;
   margin-left: 6%;
   border-radius: 50px;
-  background-color: #f8dfb6;
+  background-color: #f1e2ab;
   border: none;
   /* border: 2px solid #baab9f; */
   /* box-shadow: 3px 3px #a29d81db; */
@@ -224,6 +235,6 @@
 }
 
 #birthDate:hover {
-  background-color: #e2b493;
+  background-color: #f5db80;
   transition-duration: 0.6s;
 }

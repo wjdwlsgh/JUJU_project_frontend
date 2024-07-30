@@ -62,12 +62,12 @@ const ProfilePicture = ({ onUpload, defaultImage }) => {
           className="img-section"
           src={preview}
           alt="Preview"
-          style={{
-            width: "200px",
-            height: "200px",
-            marginBottom: "20px",
-            marginTop: "10px",
-          }}
+          // style={{
+          //   width: "200px",
+          //   height: "200px",
+          //   marginBottom: "20px",
+          //   marginTop: "10px",
+          // }}
         />
         <input id="file-upload-button" type="file" onChange={handleFileChange} />
       </div>

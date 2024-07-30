@@ -34,7 +34,7 @@ const Home = () => {
     <div className="setting-icon">
       <button className="setting-icon-button" onClick={handleClick}>
         <img className="setting-icon-img" src={settingImg} alt="설정 아이콘" />
-        설정
+        <div id="setting-font">설정</div>
       </button>
     </div>
   );
