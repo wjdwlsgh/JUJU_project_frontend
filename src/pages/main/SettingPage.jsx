@@ -24,7 +24,11 @@ const SettingPage = ({ userEmail, setProfilePicture, setNickname }) => {
   return (
     <div className="mypage">
       <div id="mypage-top">
-        <div className="mypage-top-left">JUJU-MY-PAGE</div>
+        <div className="mypage-top-left">
+          <button className="mypage-top-left" onClick={handleHomeClick}>
+            🏠 JUJU-MY-PAGE
+          </button>
+        </div>
         <div className="mypage-top-right">
           # 하 이 # juju # 코 린 이 들 # 쌈 @ 뽕 # 🐧 🐹 🐶 🐿️ 🐤
         </div>
@@ -63,16 +67,16 @@ const SettingPage = ({ userEmail, setProfilePicture, setNickname }) => {
         </tbody>
       </table>
 
-      <div className="mypage-buttons">
+      {/* <div className="mypage-buttons">
         <button className="home-button" onClick={handleHomeClick}>
           <img
             src={homeImage}
             alt="설정 아이콘"
             style={{ width: "30px", height: "25px" }}
           />
-          홈으로
+          JUJU-MY-PAGE
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -1,11 +1,12 @@
 #file-upload-button {
-  display: flex;
+  /* display: flex; */
   margin: 2px;
   padding: 0%;
-  width: 200px;
-  height: 30px;
+  width: 100%;
+  height: 24%;
   margin: auto;
   font-family: "Ownglyph_ryuttung-Rg";
+  margin-left: 14%;
 }
 
 .ProfilePicture-mom {
@@ -29,17 +30,17 @@
 }
 
 #upload-button {
-  width: 20%;
-  height: 16%;
+  width: 30%;
+  height: 20%;
   border-radius: 10px;
   font-size: 20px;
-  /* padding: 6px; */
-  border: 3px solid white;
-  color: black;
-  background-color: #fae6abb2;
+  padding: 6px;
+  border: 2px solid #19456996;
+  color: white;
+  background-color: #19456996;
   /* font-family: "Ownglyph_UNZ-Rg"; */
   font-family: "Ownglyph_ryuttung-Rg";
-  margin-right: 10%;
+  margin-right: 6%;
   margin-bottom: 2%;
 
   cursor: pointer;
@@ -47,4 +48,9 @@
     background: #b3907aa6;
     color: #fff;
   }
+}
+
+.img-section {
+  width: 70%;
+  height: 90%;
 }
