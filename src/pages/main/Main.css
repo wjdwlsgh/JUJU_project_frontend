@@ -111,8 +111,9 @@ header {
 .setting-icon-div {
   display: flex;
   flex-direction: row;
-  height: 20%;
+  height: 13%;
   width: 100%;
+  margin-left: 8%;
 }
 
 .profile-info {
