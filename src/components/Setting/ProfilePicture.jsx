@@ -69,7 +69,11 @@ const ProfilePicture = ({ onUpload, defaultImage }) => {
           //   marginTop: "10px",
           // }}
         />
-        <input id="file-upload-button" type="file" onChange={handleFileChange} />
+        <input
+          id="file-upload-button"
+          type="file"
+          onChange={handleFileChange}
+        />
       </div>
 
       <div className="upload-div">

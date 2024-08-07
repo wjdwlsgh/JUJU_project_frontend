@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Full from "../../components/main/full/full";
 import Clock from "../../components/Todo/Clock";
 import Home from "../Home/Home";
+import imgfile from "../../assets/imgs/main.png";
 import "../../components/main/full/full.css";
 import "./Main.css";
 
@@ -23,6 +24,18 @@ const Main = ({ profilePicture, nickname }) => {
 
   const navigate = useNavigate();
 
+  const goToLogin = () => {
+    navigate("/api/Login");
+  };
+
+  const goToDiary = () => {
+    navigate("/api/Diary");
+  };
+
+  const goToSetting = () => {
+    navigate("/api/setting");
+  };
+
   return (
     <div className="Mainbody">
       <div className="menu_wrapper">
@@ -34,7 +47,7 @@ const Main = ({ profilePicture, nickname }) => {
           <div className="profile-info">
             <img
               id="profile-img"
-              src={currentProfilePicture}
+              src={imgfile}
               alt="Profile"
               className="profile-picture"
               // style={{ width: "150px", height: "150px" }}
@@ -47,7 +60,12 @@ const Main = ({ profilePicture, nickname }) => {
           </div>
         </div>
 
-        <div className="left_container2">{/* ProfilePicture component has been removed */}</div>
+        <div className="left_container2">
+          <div className="left_container2_baby">일기 쓰기</div>
+          <div className="left_container2_baby">일기 페이지</div>
+          <div className="left_container2_baby">친구 목록</div>
+          <div className="left_container2_baby">설정</div>
+        </div>
       </div>
 
       <main className="content">

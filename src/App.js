@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import "./App.css";
 import Main from "./pages/main/Main";
 import Login from "./pages/Login/Login";
@@ -23,11 +28,18 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<Login setNickname={setNickname} setProfilePicture={setProfilePicture} />}
+            element={
+              <Login
+                setNickname={setNickname}
+                setProfilePicture={setProfilePicture}
+              />
+            }
           />
           <Route
-            path="/api/user-page/:encryptedUrl"
-            element={<Main profilePicture={profilePicture} nickname={nickname} />}
+            path="/api/Main"
+            element={
+              <Main profilePicture={profilePicture} nickname={nickname} />
+            }
           />
           <Route path="/api/Find" element={<Find />} />
           <Route path="/api/Account" element={<AccountForm />} />
