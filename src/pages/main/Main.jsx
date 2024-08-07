@@ -5,6 +5,7 @@ import Clock from "../../components/Todo/Clock";
 import Home from "../Home/Home";
 import "../../components/main/full/full.css";
 import "./Main.css";
+import Diary from "../Diary/Diary";
 
 const Main = ({ profilePicture, nickname }) => {
   const [currentProfilePicture, setCurrentProfilePicture] = useState(() => {
