@@ -79,8 +79,10 @@ function AccountForm() {
     try {
       const response = await axios.post(
         "http://localhost:8080/api/verify-email-code",
-        { email, code: verificationCode },
-        { timeout: 5000 }
+        {
+          email,
+          code: verificationCode,
+        }
       );
       console.log("이메일 인증 코드 확인 응답:", response.data);
       if (response.data) {
@@ -165,6 +167,7 @@ function AccountForm() {
                 type="email"
                 name="email"
                 placeholder="Email"
+                autoComplete="off" // 자동완성 비활성화
                 {...register("email", {
                   required: "이메일은 필수 입력입니다.",
                   pattern: {
@@ -224,9 +227,9 @@ function AccountForm() {
             <input
               className="input-password"
               type="password"
-              name="password"
+              name="password1"
               placeholder="Password"
-              {...register("password", {
+              {...register("password1", {
                 required: "비밀번호는 필수 입력입니다.",
                 minLength: {
                   value: 8,
@@ -234,9 +237,9 @@ function AccountForm() {
                 },
               })}
             />
-            {errors.password && (
+            {errors.password1 && (
               <small className="Accountsmall" role="alert">
-                {errors.password.message}
+                {errors.password1.message}
               </small>
             )}
           </div>
@@ -249,16 +252,16 @@ function AccountForm() {
               type="password"
               name="passwordConfirm"
               placeholder="Confirm Password"
-              {...register("passwordConfirm", {
+              {...register("password2", {
                 required: "비밀번호 확인은 필수 입력입니다.",
                 validate: (value) =>
-                  value === getValues("password") ||
+                  value === getValues("password1") ||
                   "비밀번호가 일치하지 않습니다.",
               })}
             />
-            {errors.passwordConfirm && (
+            {errors.password2 && (
               <small className="Accountsmall" role="alert">
-                {errors.passwordConfirm.message}
+                {errors.password2.message}
               </small>
             )}
           </div>

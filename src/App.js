@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import "./App.css";
 import Main from "./pages/main/Main";
 import Login from "./pages/Login/Login";
@@ -22,12 +27,20 @@ function App() {
       <Router>
         <Routes>
           <Route
+            path="/"
+            element={
+              <Login
+                setNickname={setNickname}
+                setProfilePicture={setProfilePicture}
+              />
+            }
+          />
+          <Route
             path="/api/Main"
             element={
               <Main profilePicture={profilePicture} nickname={nickname} />
             }
           />
-          <Route path="/" element={<Login />} />
           <Route path="/api/Find" element={<Find />} />
           <Route path="/api/Account" element={<AccountForm />} />
           <Route
@@ -41,6 +54,7 @@ function App() {
               />
             }
           />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
         <ToastContainer /> {/* ToastContainer 추가 */}
       </Router>

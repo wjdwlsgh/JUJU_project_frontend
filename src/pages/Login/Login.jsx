@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios"; // Axios import
 
-function Login({ setNickname }) {
+function Login({ setNickname, setProfilePicture }) {
   const navigate = useNavigate();
   const {
     register,
@@ -23,18 +23,21 @@ function Login({ setNickname }) {
         "http://localhost:8080/api/login",
         data
       );
-      console.log("로그인 응답:", response.data); // 응답을 콘솔에 출력
+      // console.log("로그인 응답:", response.data); // 응답을 콘솔에 출력
 
       // 로그인 성공 시 닉네임 업데이트
       if (setNickname && typeof setNickname === "function") {
         setNickname(response.data.nickname); // 서버 응답에 따라 적절한 필드로 설정
-      } else {
-        console.error("setNickname은 함수가 아닙니다.");
+      }
+
+      if (setProfilePicture && typeof setProfilePicture === "function") {
+        setProfilePicture(response.data.profilePicture);
       }
 
       // 로컬 스토리지에 사용자 정보 저장
       localStorage.setItem("userNickname", response.data.nickname);
       localStorage.setItem("userEmail", data.email);
+      localStorage.setItem("userProfilePicture", response.data.profilePicture);
 
       alert("로그인 성공");
       navigate("/api/main"); // 로그인 후 메인 페이지로 이동
@@ -66,6 +69,7 @@ function Login({ setNickname }) {
               type="email"
               id="LoginEmail"
               placeholder="  test@email.com"
+              autoComplete="off" // 자동완성 비활성화
               aria-invalid={
                 isSubmitted ? (errors.email ? "true" : "false") : undefined
               }

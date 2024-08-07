@@ -74,7 +74,7 @@ const SettingPage = ({ userEmail, setProfilePicture, setNickname }) => {
             alt="설정 아이콘"
             style={{ width: "30px", height: "25px" }}
           />
-          JUJU-MY-PAGE
+          홈으로
         </button>
       </div> */}
     </div>

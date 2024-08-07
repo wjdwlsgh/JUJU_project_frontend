@@ -8,6 +8,7 @@ import "./full.css";
 import Modal from "./modal";
 import Modal2 from "./modal2";
 import axios from "axios";
+import { AnimatePresence } from "framer-motion";
 
 class Full extends Component {
   constructor(props) {
@@ -34,7 +35,7 @@ class Full extends Component {
   }
 
   componentDidMount() {
-    this.handleResize(); // Initial resize
+    this.handleResize(); // 초기 사이즈 조정
     window.addEventListener("resize", this.handleResize);
 
     // 서버에서 데이터 가져오기
@@ -42,7 +43,7 @@ class Full extends Component {
       .get("http://localhost:8080/api/todo")
       .then((response) => {
         const events = response.data.map((item) => ({
-          id: item.id,
+          id: item.id, // id를 추가
           title: item.title,
           start: item.start || new Date().toISOString(),
           end: item.end || new Date().toISOString(),
@@ -98,7 +99,7 @@ class Full extends Component {
   handleEventClick = (arg) => {
     this.setState({
       isModal2Open: true,
-      editingEventId: arg.event.id,
+      editingEventId: arg.event.id, // id로 변경
       newEvent: {
         title: arg.event.title || "",
         start: arg.event.startStr || "",
@@ -147,11 +148,11 @@ class Full extends Component {
       })
       .then((response) => {
         console.log("Save success:", response.data);
-        this.setState({
-          events: [...this.state.events, response.data], // 서버에서 반환된 데이터를 사용
+        this.setState((prevState) => ({
+          events: [...prevState.events, response.data],
           isModalOpen: false,
           newEvent: { title: "", start: "", end: "", color: "" },
-        });
+        }));
       })
       .catch((error) => {
         console.error("Save error:", error);
@@ -159,7 +160,7 @@ class Full extends Component {
   };
 
   handleSaveEvent2 = () => {
-    const { editingEventId, newEvent, events } = this.state;
+    const { editingEventId, newEvent } = this.state;
 
     if (newEvent.title.trim() === "") {
       alert("제목을 입력해 주세요.");
@@ -175,17 +176,14 @@ class Full extends Component {
       color: newEvent.color,
     };
 
-    // Update event on server
+    // 서버에서 이벤트 업데이트
     axios
       .put(`http://localhost:8080/api/todo/${editingEventId}`, updatedEvent)
-      .then((response) => {
-        console.log("Update success:", response.data);
-
-        // Fetch the updated events from the server
+      .then(() => {
+        // 서버에서 최신 이벤트 목록을 다시 요청
         return axios.get("http://localhost:8080/api/todo");
       })
       .then((response) => {
-        // Process the updated events and update the state
         const updatedEvents = response.data.map((item) => ({
           id: item.id,
           title: item.title,
@@ -197,18 +195,12 @@ class Full extends Component {
           },
         }));
 
-        this.setState(
-          {
-            events: updatedEvents,
-            isModal2Open: false,
-            newEvent: { title: "", start: "", end: "", color: "" },
-            editingEventId: null,
-          },
-          () => {
-            // Ensure events are updated in the calendar
-            this.calendarRef.current.getApi().refetchEvents();
-          }
-        );
+        this.setState({
+          events: updatedEvents,
+          isModal2Open: false,
+          newEvent: { title: "", start: "", end: "", color: "" },
+          editingEventId: null,
+        });
       })
       .catch((error) => {
         console.error("Update error:", error);
@@ -223,13 +215,11 @@ class Full extends Component {
       return;
     }
 
-    // 서버로 데이터 삭제 요청
+    // 서버에서 이벤트 삭제
     axios
       .delete(`http://localhost:8080/api/todo/${editingEventId}`)
       .then(() => {
-        console.log("Delete success");
-
-        // 서버에서 최신 이벤트 목록을 다시 요청하여 클라이언트 상태 업데이트
+        // 서버에서 최신 이벤트 목록을 다시 요청
         return axios.get("http://localhost:8080/api/todo");
       })
       .then((response) => {
@@ -258,7 +248,7 @@ class Full extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.events !== this.state.events) {
-      this.calendarRef.current.getApi().render();
+      this.calendarRef.current.getApi().refetchEvents();
     }
   }
 
@@ -285,11 +275,7 @@ class Full extends Component {
   render() {
     return (
       <div className="fullMain">
-        {/* <div className="fullClock">
-          <Clock />
-        </div> */}
         <div className="main-logo">JUJU-CALENDAR</div>
-        {/* <div class="main-top-line"></div> */}
         <div className="custom-calendar-container">
           <FullCalendar
             key={this.state.events.length} // key 추가
@@ -327,26 +313,30 @@ class Full extends Component {
           />
         </div>
 
-        {this.state.isModalOpen && (
-          <Modal
-            newEvent={this.state.newEvent}
-            handleClose={this.handleCloseModal}
-            handleSave={this.handleSaveEvent}
-            handleChange={this.handleInputChange}
-            colorMap={this.state.colorMap}
-          />
-        )}
+        <AnimatePresence>
+          {this.state.isModalOpen && (
+            <Modal
+              newEvent={this.state.newEvent}
+              handleClose={this.handleCloseModal}
+              handleSave={this.handleSaveEvent}
+              handleChange={this.handleInputChange}
+              colorMap={this.state.colorMap}
+            />
+          )}
+        </AnimatePresence>
 
-        {this.state.isModal2Open && (
-          <Modal2
-            newEvent={this.state.newEvent}
-            handleClose={this.handleCloseModal2}
-            handleSave={this.handleSaveEvent2}
-            handleDelete={this.handleDeleteEvent}
-            handleChange={this.handleInputChange}
-            colorMap={this.state.colorMap}
-          />
-        )}
+        <AnimatePresence>
+          {this.state.isModal2Open && (
+            <Modal2
+              newEvent={this.state.newEvent}
+              handleClose={this.handleCloseModal2}
+              handleSave={this.handleSaveEvent2}
+              handleDelete={this.handleDeleteEvent}
+              handleChange={this.handleInputChange}
+              colorMap={this.state.colorMap}
+            />
+          )}
+        </AnimatePresence>
       </div>
     );
   }

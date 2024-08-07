@@ -30,6 +30,7 @@ const ProfilePicture = ({ onUpload, defaultImage }) => {
 
     const formData = new FormData();
     formData.append("profilePicture", selectedFile);
+    formData.append("email", localStorage.getItem("userEmail"));
 
     try {
       const response = await axios.post(
@@ -41,10 +42,10 @@ const ProfilePicture = ({ onUpload, defaultImage }) => {
           },
         }
       );
-      const imageUrl = response.data.url;
+      const imageUrl = response.data.profileImgPath;
       const fullImageUrl = `http://localhost:8080${imageUrl}`;
       onUpload(fullImageUrl);
-      localStorage.setItem("userProfilePicture", fullImageUrl);
+      localStorage.setItem("userProfilePicture", imageUrl);
       setUploadError(null);
       toast.success("프로필 사진이 성공적으로 업로드되었습니다.");
     } catch (error) {
