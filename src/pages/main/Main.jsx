@@ -32,6 +32,10 @@ const Main = ({ profilePicture, nickname }) => {
     navigate("/api/Diary");
   };
 
+  const goToArticle = () => {
+    navigate("/api/Article");
+  };
+
   const goToSetting = () => {
     navigate("/api/setting");
   };
@@ -64,7 +68,9 @@ const Main = ({ profilePicture, nickname }) => {
           <div className="left_container2_baby" onClick={goToDiary}>
             일기 쓰기
           </div>
-          <div className="left_container2_baby">일기 페이지</div>
+          <div className="left_container2_baby" onClick={goToArticle}>
+            일기 페이지
+          </div>
           <div className="left_container2_baby">친구 목록</div>
           <div className="left_container2_baby">설정</div>
         </div>
