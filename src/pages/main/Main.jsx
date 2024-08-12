@@ -6,7 +6,6 @@ import Home from "../Home/Home";
 import imgfile from "../../assets/imgs/main.png";
 import "../../components/main/full/full.css";
 import "./Main.css";
-import Diary from "../Diary/Diary";
 
 const Main = ({ profilePicture, nickname }) => {
   const [currentProfilePicture, setCurrentProfilePicture] = useState(() => {
@@ -62,7 +61,9 @@ const Main = ({ profilePicture, nickname }) => {
         </div>
 
         <div className="left_container2">
-          <div className="left_container2_baby">일기 쓰기</div>
+          <div className="left_container2_baby" onClick={goToDiary}>
+            일기 쓰기
+          </div>
           <div className="left_container2_baby">일기 페이지</div>
           <div className="left_container2_baby">친구 목록</div>
           <div className="left_container2_baby">설정</div>

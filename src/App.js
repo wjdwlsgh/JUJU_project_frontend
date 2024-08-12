@@ -14,6 +14,7 @@ import SettingPage from "./pages/main/SettingPage";
 import mainImage from "./assets/imgs/main.png";
 import { ToastContainer } from "react-toastify"; // ToastContainer 임포트
 import "react-toastify/dist/ReactToastify.css"; // Toast 스타일 임포트
+import Diary from "./pages/Diary/Diary";
 
 function App() {
   const [profilePicture, setProfilePicture] = useState(
@@ -55,6 +56,7 @@ function App() {
             }
           />
           <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="/api/Diary" element={<Diary />} />
         </Routes>
         <ToastContainer /> {/* ToastContainer 추가 */}
       </Router>
