@@ -6,11 +6,14 @@ import Home from "../Home/Home";
 import imgfile from "../../assets/imgs/main.png";
 import "../../components/main/full/full.css";
 import "./Main.css";
+import FriendsModal from "../../friends/friendsModal";
 
 const Main = ({ profilePicture, nickname }) => {
   const [currentProfilePicture, setCurrentProfilePicture] = useState(() => {
     return localStorage.getItem("userProfilePicture") || profilePicture;
   });
+
+  const [isFriendsModalOpen, setFriendsModalOpen] = useState(false); // State for FriendsModal
 
   useEffect(() => {
     if (profilePicture) {
@@ -24,16 +27,12 @@ const Main = ({ profilePicture, nickname }) => {
 
   const navigate = useNavigate();
 
-  const goToLogin = () => {
-    navigate("/api/Login");
+  const handleOpenFriendsModal = () => {
+    setFriendsModalOpen(true);
   };
 
-  const goToDiary = () => {
-    navigate("/api/Diary");
-  };
-
-  const goToSetting = () => {
-    navigate("/api/setting");
+  const handleCloseFriendsModal = () => {
+    setFriendsModalOpen(false);
   };
 
   return (
@@ -63,7 +62,12 @@ const Main = ({ profilePicture, nickname }) => {
         <div className="left_container2">
           <div className="left_container2_baby">일기 쓰기</div>
           <div className="left_container2_baby">일기 페이지</div>
-          <div className="left_container2_baby">친구 목록</div>
+          <div
+            className="left_container2_baby"
+            onClick={handleOpenFriendsModal}
+          >
+            친구 목록
+          </div>
           <div className="left_container2_baby">설정</div>
         </div>
       </div>
@@ -71,6 +75,12 @@ const Main = ({ profilePicture, nickname }) => {
       <main className="content">
         <Full />
       </main>
+
+      {/* Friends Modal */}
+      <FriendsModal
+        isOpen={isFriendsModalOpen}
+        handleClose={handleCloseFriendsModal}
+      />
     </div>
   );
 };
