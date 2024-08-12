@@ -6,11 +6,14 @@ import Home from "../Home/Home";
 import imgfile from "../../assets/imgs/main.png";
 import "../../components/main/full/full.css";
 import "./Main.css";
+import FriendsModal from "../../friends/friendsModal";
 
 const Main = ({ profilePicture, nickname }) => {
   const [currentProfilePicture, setCurrentProfilePicture] = useState(() => {
     return localStorage.getItem("userProfilePicture") || profilePicture;
   });
+
+  const [isFriendsModalOpen, setFriendsModalOpen] = useState(false); // State for FriendsModal
 
   useEffect(() => {
     if (profilePicture) {
@@ -24,10 +27,11 @@ const Main = ({ profilePicture, nickname }) => {
 
   const navigate = useNavigate();
 
-  const goToLogin = () => {
-    navigate("/api/Login");
+  const handleOpenFriendsModal = () => {
+    setFriendsModalOpen(true);
   };
 
+<<<<<<< HEAD
   const goToDiary = () => {
     navigate("/api/Diary");
   };
@@ -38,6 +42,10 @@ const Main = ({ profilePicture, nickname }) => {
 
   const goToSetting = () => {
     navigate("/api/setting");
+=======
+  const handleCloseFriendsModal = () => {
+    setFriendsModalOpen(false);
+>>>>>>> 58e4ec30b9f7c2a4daa8caa948a1de7983e70135
   };
 
   return (
@@ -68,10 +76,20 @@ const Main = ({ profilePicture, nickname }) => {
           <div className="left_container2_baby" onClick={goToDiary}>
             일기 쓰기
           </div>
+<<<<<<< HEAD
           <div className="left_container2_baby" onClick={goToArticle}>
             일기 페이지
           </div>
           <div className="left_container2_baby">친구 목록</div>
+=======
+          <div className="left_container2_baby">일기 페이지</div>
+          <div
+            className="left_container2_baby"
+            onClick={handleOpenFriendsModal}
+          >
+            친구 목록
+          </div>
+>>>>>>> 58e4ec30b9f7c2a4daa8caa948a1de7983e70135
           <div className="left_container2_baby">설정</div>
         </div>
       </div>
@@ -79,6 +97,12 @@ const Main = ({ profilePicture, nickname }) => {
       <main className="content">
         <Full />
       </main>
+
+      {/* Friends Modal */}
+      <FriendsModal
+        isOpen={isFriendsModalOpen}
+        handleClose={handleCloseFriendsModal}
+      />
     </div>
   );
 };
