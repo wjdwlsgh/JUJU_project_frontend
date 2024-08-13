@@ -60,9 +60,7 @@ const Main = ({ profilePicture, nickname }) => {
         </div>
 
         <div className="left_container2">
-          <div className="left_container2_baby" onClick={goToDiary}>
-            일기 쓰기
-          </div>
+          <div className="left_container2_baby">일기 쓰기</div>
           <div className="left_container2_baby">일기 페이지</div>
           <div
             className="left_container2_baby"
