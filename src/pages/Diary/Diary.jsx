@@ -40,6 +40,25 @@ const Diary = () => {
     navigate("/api/main");
   };
 
+  const handleComplete = () => {
+    const newEntry = {
+      date,
+      emotion,
+      diary,
+      photo,
+    };
+
+    const savedEntries = JSON.parse(localStorage.getItem("diaryEntries")) || [];
+    savedEntries.push(newEntry);
+    localStorage.setItem("diaryEntries", JSON.stringify(savedEntries));
+
+    // Reset the form
+    handleCancel();
+
+    // // Navigate to the Article page to view the entries
+    // navigate("/api/Article");
+  };
+
   // const handleComplete = () => {
   //   // 완료 버튼 로직 추가
   //   console.log("Date:", date);
@@ -56,7 +75,13 @@ const Diary = () => {
       </div>
       <div className="diary-div">
         <header className="header-div">
-          <div id="p-style"> 일기 </div>
+          {/* <div id="p-style"> 일기 </div> */}
+          <input
+            type="text"
+            id="diary-title"
+            required
+            placeholder="제목을 입력해 주세요."
+          ></input>
         </header>
 
         <section className="date-div">
@@ -70,7 +95,7 @@ const Diary = () => {
         </section>
 
         <section className="emotion-div">
-          <div id="p-style">오늘의 감정</div>
+          <div id="emotion-p-style">오늘의 감정</div>
 
           <div id="emotion-button-mom">
             <button

@@ -15,6 +15,8 @@ const Main = ({ profilePicture, nickname }) => {
 
   const [isFriendsModalOpen, setFriendsModalOpen] = useState(false); // State for FriendsModal
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (profilePicture) {
       setCurrentProfilePicture(profilePicture);
@@ -25,8 +27,6 @@ const Main = ({ profilePicture, nickname }) => {
     localStorage.setItem("userProfilePicture", currentProfilePicture);
   }, [currentProfilePicture]);
 
-  const navigate = useNavigate();
-
   const handleOpenFriendsModal = () => {
     setFriendsModalOpen(true);
   };
@@ -35,6 +35,9 @@ const Main = ({ profilePicture, nickname }) => {
     setFriendsModalOpen(false);
   };
 
+  const goToDiary = () => {
+    navigate("/api/Diary");
+  };
   return (
     <div className="Mainbody">
       <div className="menu_wrapper">
@@ -62,10 +65,7 @@ const Main = ({ profilePicture, nickname }) => {
         <div className="left_container2">
           <div className="left_container2_baby">일기 쓰기</div>
           <div className="left_container2_baby">일기 페이지</div>
-          <div
-            className="left_container2_baby"
-            onClick={handleOpenFriendsModal}
-          >
+          <div className="left_container2_baby" onClick={handleOpenFriendsModal}>
             친구 목록
           </div>
           <div className="left_container2_baby">설정</div>
@@ -77,12 +77,8 @@ const Main = ({ profilePicture, nickname }) => {
       </main>
 
       {/* Friends Modal */}
-      <FriendsModal
-        isOpen={isFriendsModalOpen}
-        handleClose={handleCloseFriendsModal}
-      />
+      <FriendsModal isOpen={isFriendsModalOpen} handleClose={handleCloseFriendsModal} />
     </div>
   );
 };
-
 export default Main;
