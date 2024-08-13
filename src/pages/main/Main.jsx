@@ -31,7 +31,10 @@ const Main = ({ profilePicture, nickname }) => {
     setFriendsModalOpen(true);
   };
 
-<<<<<<< HEAD
+  const handleCloseFriendsModal = () => {
+    setFriendsModalclose(false);
+  };
+
   const goToDiary = () => {
     navigate("/api/Diary");
   };
@@ -42,10 +45,6 @@ const Main = ({ profilePicture, nickname }) => {
 
   const goToSetting = () => {
     navigate("/api/setting");
-=======
-  const handleCloseFriendsModal = () => {
-    setFriendsModalOpen(false);
->>>>>>> 58e4ec30b9f7c2a4daa8caa948a1de7983e70135
   };
 
   return (
@@ -76,20 +75,10 @@ const Main = ({ profilePicture, nickname }) => {
           <div className="left_container2_baby" onClick={goToDiary}>
             일기 쓰기
           </div>
-<<<<<<< HEAD
           <div className="left_container2_baby" onClick={goToArticle}>
             일기 페이지
           </div>
           <div className="left_container2_baby">친구 목록</div>
-=======
-          <div className="left_container2_baby">일기 페이지</div>
-          <div
-            className="left_container2_baby"
-            onClick={handleOpenFriendsModal}
-          >
-            친구 목록
-          </div>
->>>>>>> 58e4ec30b9f7c2a4daa8caa948a1de7983e70135
           <div className="left_container2_baby">설정</div>
         </div>
       </div>
