@@ -63,6 +63,9 @@
   height: 100%;
   background-color: bisque;
   display: flex;
+  justify-content: center; /* Center the image horizontally */
+  align-items: center; /* Center the image vertically */
+  overflow: hidden; /* Ensures that any part of the image that doesn't fit is cropped */
 }
 
 .photo-label {
@@ -71,6 +74,21 @@
   padding: 2%;
   align-items: center;
   align-content: center;
+}
+
+.photo-preview {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.photo-preview img {
+  max-width: 100%; /* The image width will scale up to 100% of the container */
+  max-height: 100%; /* The image height will scale up to 100% of the container */
+  object-fit: cover; /* Ensures the image covers the container, cropping the overflow */
+  border-radius: 8px; /* Optional: Add rounded corners to the image */
 }
 
 .article-2 {

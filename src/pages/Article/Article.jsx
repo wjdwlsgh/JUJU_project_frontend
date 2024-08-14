@@ -109,32 +109,36 @@ const Article = () => {
 
         <p>Total Post: {filteredPosts.length}개</p>
 
-        <table>
-          <thead>
-            <tr>
-              <th>No.</th>
-              <th>Post</th>
-              <th>Date</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {currentPosts.map((post, index) => (
-              <tr key={post.id}>
-                <td>{offset + index + 1}</td>
-                <td>
-                  <img
-                    src={post.imageUrl}
-                    alt={post.title}
-                    style={{ width: "50px", marginRight: "10px" }}
-                  />
-                  {post.title}
-                </td>
-                <td>{post.date}</td>
+        {filteredPosts.length === 0 ? (
+          <div className="no-posts">게시물 없음</div>
+        ) : (
+          <table>
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th>Post</th>
+                <th>Date</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+
+            <tbody>
+              {currentPosts.map((post, index) => (
+                <tr key={post.id}>
+                  <td>{offset + index + 1}</td>
+                  <td>
+                    <img
+                      src={post.imageUrl}
+                      alt={post.title}
+                      style={{ width: "50px", marginRight: "10px" }}
+                    />
+                    {post.title}
+                  </td>
+                  <td>{post.date}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
 
         <ReactPaginate
           previousLabel="⬅️"
