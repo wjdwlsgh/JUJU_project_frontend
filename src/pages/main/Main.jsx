@@ -32,17 +32,12 @@ const Main = ({ profilePicture, nickname }) => {
   };
 
   const handleCloseFriendsModal = () => {
-<<<<<<< HEAD
-    setFriendsModalclose(false);
-=======
     setFriendsModalOpen(false);
->>>>>>> 436f53afc4feea70f4d96f19ffa1c7b1f55734f3
   };
 
   const goToDiary = () => {
     navigate("/api/Diary");
   };
-<<<<<<< HEAD
 
   const goToArticle = () => {
     navigate("/api/Article");
@@ -52,8 +47,6 @@ const Main = ({ profilePicture, nickname }) => {
     navigate("/api/setting");
   };
 
-=======
->>>>>>> 436f53afc4feea70f4d96f19ffa1c7b1f55734f3
   return (
     <div className="Mainbody">
       <div className="menu_wrapper">
@@ -79,7 +72,6 @@ const Main = ({ profilePicture, nickname }) => {
         </div>
 
         <div className="left_container2">
-<<<<<<< HEAD
           <div className="left_container2_baby" onClick={goToDiary}>
             일기 쓰기
           </div>
@@ -87,13 +79,14 @@ const Main = ({ profilePicture, nickname }) => {
             일기 페이지
           </div>
           <div className="left_container2_baby">친구 목록</div>
-=======
           <div className="left_container2_baby">일기 쓰기</div>
           <div className="left_container2_baby">일기 페이지</div>
-          <div className="left_container2_baby" onClick={handleOpenFriendsModal}>
+          <div
+            className="left_container2_baby"
+            onClick={handleOpenFriendsModal}
+          >
             친구 목록
           </div>
->>>>>>> 436f53afc4feea70f4d96f19ffa1c7b1f55734f3
           <div className="left_container2_baby">설정</div>
         </div>
       </div>
@@ -103,7 +96,10 @@ const Main = ({ profilePicture, nickname }) => {
       </main>
 
       {/* Friends Modal */}
-      <FriendsModal isOpen={isFriendsModalOpen} handleClose={handleCloseFriendsModal} />
+      <FriendsModal
+        isOpen={isFriendsModalOpen}
+        handleClose={handleCloseFriendsModal}
+      />
     </div>
   );
 };

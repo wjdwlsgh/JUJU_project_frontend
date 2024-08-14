@@ -34,6 +34,7 @@ const Diary = () => {
     setDate("");
     setEmotion("");
     setDiary("");
+    setPhoto(null);
   };
 
   const handleHomeClick = () => {
@@ -55,8 +56,8 @@ const Diary = () => {
     // Reset the form
     handleCancel();
 
-    // // Navigate to the Article page to view the entries
-    // navigate("/api/Article");
+    // Navigate to the Article page to view the entries
+    navigate("/api/Article");
   };
 
   // const handleComplete = () => {

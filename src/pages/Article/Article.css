@@ -1,56 +1,84 @@
-.article-page {
+.bulletin-board {
+  display: flex;
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+.sidebar {
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-right: 1px solid #ccc;
+}
+
+.sidebar button {
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.content {
+  flex-grow: 1;
   padding: 20px;
 }
 
-.article-header-div {
-  text-align: center;
+.content h1 {
+  margin-bottom: 10px;
+}
+
+.content input {
+  width: 300px;
+  padding: 8px;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.content p {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
   margin-bottom: 20px;
 }
 
-.entries-list {
-  display: flex;
-  justify-content: center;
-}
-
-.entries-ul {
-  list-style-type: none;
-  padding: 0;
-  width: 100%;
-  max-width: 600px;
-}
-
-.entry-li {
-  display: flex;
-  align-items: center;
-  padding: 10px;
+table th,
+table td {
   border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-bottom: 10px;
+  padding: 10px;
+  text-align: left;
+}
+
+table th {
   background-color: #f9f9f9;
 }
 
-.entry-photo {
-  margin-right: 15px;
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
 }
 
-.entry-photo img {
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-  border-radius: 50%;
+.pagination li {
+  margin: 0 5px;
 }
 
-.entry-content {
-  flex-grow: 1;
+.pagination li a {
+  cursor: pointer;
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-decoration: none;
 }
 
-.entry-title {
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.entry-date,
-.entry-emotion {
-  color: #666;
-  font-size: 0.9em;
+.pagination li.active a {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
 }
