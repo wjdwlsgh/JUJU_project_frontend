@@ -11,6 +11,36 @@
   z-index: 2000; /* 부모 모달보다 높아야 합니다 */
 }
 
+.addFriends-modal-content {
+  background-color: #fff;
+  border-radius: 8px;
+  width: 80%;
+  height: 40%;
+  max-width: 600px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.search-box-mom {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
 .addmodal-close-button {
   background-color: #007bff;
   color: white;
@@ -20,14 +50,25 @@
   cursor: pointer;
   font-size: 14px;
   margin-top: 20px;
+  position: absolute;
+  bottom: 30%; /* close 버튼 위치를 모달 하단으로 조정 */
+  right: 20%; /* close 버튼 위치를 모달 하단 오른쪽으로 조정 */
 }
 
-.addFreinds-modal-content {
-  background-color: #fff;
-  border-radius: 8px;
-  width: 80%;
-  height: 70%;
-  max-width: 600px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  position: relative;
+.search-results {
+  margin-top: 20px;
+}
+
+.error {
+  color: red;
+}
+
+.user-info {
+  padding: 10px 0;
+}
+
+.addFriends-title {
+  text-align: left;
+  width: 100%;
+  font-size: 20px;
 }

@@ -1,42 +1,71 @@
 header {
   width: 100%;
 }
-
-.Mainbody {
+.Mainbody-mom {
   display: flex;
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background-color: #f4ede3;
+  background-color: #e7e2cc;
+  align-items: center;
+  justify-content: center;
+}
+
+.Mainbody {
+  display: flex;
+  width: 95%;
+  height: 90%;
+  overflow: hidden;
+  background-color: #faeee9d0;
+  border-radius: 30px;
+  align-items: center;
 }
 
 .menu_wrapper {
+  display: flex;
   width: 20%;
   height: 100%;
   align-content: center;
-  background-color: beige;
+  background-color: #faeee9d0;
+  align-items: center;
+  justify-content: center;
 }
 
 .content {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 80%;
+  width: 78%;
   height: 100%;
   background-color: #f4ede3;
+  margin-top: 3%;
 }
 
 .left_container1 {
   width: 100%;
-  height: 50%;
-  background-color: #fffbf9d0;
+  height: 30%;
+  margin-top: 20%;
+  margin-bottom: 20%;
+
   /* border-radius: 8px; */
+}
+.left_container_mom {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  height: 90%;
+  justify-items: center;
+  justify-content: center;
+  border-radius: 30px;
+  background-color: white;
+  margin-top: 20%;
+  align-content: flex-start;
 }
 
 .left_container2 {
   width: 100%;
-  height: 50%;
-  background-color: #fffbf9d0;
+  height: 70%;
+
   /* border-radius: 8px; */
 }
 /* .setting-icon {
@@ -130,8 +159,17 @@ header {
 }
 
 .left_container2_baby {
-  height: 33%;
-  align-content: center;
-  border: 1px solid #6c5d53;
-  background-color: rgba(255, 255, 0, 0.534);
+  height: 10%;
+  text-align: left;
+  margin-left: 10%;
+}
+.mainIcon {
+  font-size: 20px;
+}
+
+.left_container2_logout {
+  border-top: solid 1px #d79999;
+  margin-right: 10%;
+  margin-top: 30%;
+  height: 30%;
 }

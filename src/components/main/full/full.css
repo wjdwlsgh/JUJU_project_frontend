@@ -156,7 +156,8 @@
 
 .fc .fc-toolbar.fc-header-toolbar {
   /* margin-bottom: 1.5em; */
-  background-color: #e0e4d5;
+  /* background-color: #e0e4d5; */
+  background-color: #d1d3bf;
   padding: 15px;
   margin-bottom: 0px;
 }
