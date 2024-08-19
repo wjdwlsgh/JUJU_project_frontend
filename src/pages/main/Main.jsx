@@ -38,10 +38,6 @@ const Main = ({ profilePicture, nickname }) => {
     setFriendsModalOpen(false);
   };
 
-  const goToDiary = () => {
-    navigate("/api/Diary");
-  };
-
   const goTosettiong = () => {
     navigate("/api/SettingPage");
   };
@@ -68,25 +64,28 @@ const Main = ({ profilePicture, nickname }) => {
             </div>
             <div className="left_container2">
               <div className="left_container2_baby">
-                <FaPenAlt /> 글쓰기
+                <FaPenAlt /> <span className="mainCategory">글쓰기</span>
               </div>
               <div className="left_container2_baby">
-                <TbCategoryPlus /> 글 목록
+                <TbCategoryPlus /> <span className="mainCategory">글 목록</span>
               </div>
-              <div
-                className="left_container2_baby"
-                onClick={handleOpenFriendsModal}
-              >
+              <div className="left_container2_baby">
                 <span fontSize="20px" className="mainIcon">
                   <IoPeople />
                 </span>
-                <span> 친구 목록</span>
+                <span className="mainCategory" onClick={handleOpenFriendsModal}>
+                  {" "}
+                  친구 목록
+                </span>
               </div>
-              <div className="left_container2_baby" onClick={goTosettiong}>
+              <div className="left_container2_baby">
                 <span fontSize="20px" className="mainIcon">
                   <CiSettings IoPeople />
                 </span>
-                <span> 설정</span>
+                <span className="mainCategory" onClick={goTosettiong}>
+                  {" "}
+                  설정
+                </span>
                 <div className="left_container2_logout">로그아웃</div>
               </div>
             </div>

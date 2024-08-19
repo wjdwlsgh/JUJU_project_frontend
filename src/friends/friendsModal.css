@@ -1,3 +1,4 @@
+/* 모달 오버레이 스타일 */
 .freinds-modal-overlay {
   position: fixed;
   top: 0;
@@ -9,8 +10,10 @@
   justify-content: center;
   align-items: center;
   z-index: 1000; /* 모달을 가장 위에 표시 */
+  animation: fadeIn 0.3s ease-in-out; /* 모달 열릴 때 페이드 인 애니메이션 */
 }
 
+/* 모달 콘텐츠 스타일 */
 .freinds-modal-content {
   background-color: #fff;
   border-radius: 8px;
@@ -19,8 +22,10 @@
   max-width: 600px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   position: relative;
+  animation: slideIn 0.3s ease-in-out; /* 모달 열릴 때 슬라이드 인 애니메이션 */
 }
 
+/* 모달 닫기 버튼 스타일 */
 .modal-close-button {
   position: absolute;
   bottom: 10px;
@@ -30,12 +35,12 @@
   font-size: 16px;
   background-color: #007bff;
   color: white;
-  border: none;
   padding: 10px 20px;
   border-radius: 4px;
   cursor: pointer;
 }
 
+/* 친구 관리 제목 스타일 */
 .friends_title_baby1 {
   width: 50%;
   text-align: left;
@@ -44,6 +49,7 @@
   margin-top: 8px;
 }
 
+/* 친구 관리 제목 래퍼 스타일 */
 .friends_title_mom {
   display: flex;
   flex-direction: row;
@@ -52,6 +58,7 @@
   border-bottom: solid 3px black;
 }
 
+/* 친구 관리 설정 및 추가 버튼 래퍼 스타일 */
 .friends_title_baby2 {
   width: 50%;
   text-align: right;
@@ -59,19 +66,26 @@
   margin-top: 8px;
 }
 
+/* 친구 카탈로그 스타일 */
 .friends_catalog {
   align-content: center;
   text-align: left;
   margin-left: 2%;
   height: 7%;
   width: 50%;
+  display: flex;
+  align-items: center;
+  margin-top: 5%;
 }
+
+/* 친구 카탈로그 래퍼 스타일 */
 .friends_catalog_mom {
   display: flex;
   width: 100%;
   height: 100%;
 }
 
+/* 친구 카탈로그 아이템 스타일 */
 .friends_catalog_son {
   display: flex;
   height: 13%;
@@ -79,27 +93,47 @@
   align-items: center;
 }
 
+/* 친구 카탈로그 버튼 래퍼 스타일 */
 .friends_catalog_button {
   text-align: right;
   width: 50%;
   margin-right: 2%;
   height: 100%;
-  align-content: center;
   margin-top: 5%;
 }
 
-.friends_catalog {
-  display: flex;
-  width: 50%;
-  height: 100%;
-  align-content: center;
-  align-items: center;
-  margin-top: 5%;
-}
-
+/* 친구 프로필 이미지 스타일 */
 .freinds_catalog_pic {
   width: 30%;
   border-radius: 50%;
   height: 100%;
   margin-right: 5%;
+}
+
+/* 모달 열리고 닫힐 때 애니메이션 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }

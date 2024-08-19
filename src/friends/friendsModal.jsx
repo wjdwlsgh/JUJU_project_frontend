@@ -1,10 +1,17 @@
-import React, { useState } from "react";
-import "./friendsModal.css"; // 모달의 스타일을 위한 CSS 파일을 임포트합니다
+import React, { useState, useEffect } from "react";
+import "./friendsModal.css";
 import porfileImg from "../assets/imgs/common.jpg";
 import AddFriends from "./addFriends";
 
 const FriendsModal = ({ isOpen, handleClose }) => {
   const [isAddFriendsOpen, setIsAddFriendsOpen] = useState(false);
+  const [shouldRender, setShouldRender] = useState(isOpen);
+
+  useEffect(() => {
+    if (isOpen) {
+      setShouldRender(true);
+    }
+  }, [isOpen]);
 
   const handleAddFriendsOpen = () => {
     setIsAddFriendsOpen(true);
@@ -14,23 +21,32 @@ const FriendsModal = ({ isOpen, handleClose }) => {
     setIsAddFriendsOpen(false);
   };
 
-  if (!isOpen) return null;
+  const handleAnimationEnd = () => {
+    if (!isOpen) {
+      setShouldRender(false);
+    }
+  };
 
-  return (
-    <div className="freinds-modal-overlay">
+  const handleModalClose = () => {
+    handleClose();
+    setTimeout(() => setShouldRender(false)); // 페이드 아웃 애니메이션이 완료된 후 렌더링 제거
+  };
+
+  return shouldRender ? (
+    <div
+      className={`freinds-modal-overlay ${!isOpen ? "fade-out" : ""}`}
+      onAnimationEnd={handleAnimationEnd}
+    >
       <div className="freinds-modal-content">
         <div className="friends_title_mom">
           <div className="friends_title_baby1">친구 관리</div>
           <div className="friends_title_baby2">
             🔍 <span onClick={handleAddFriendsOpen}>➕</span> ⚙️
           </div>
-          <div className="freinds_"></div>
-          <div className="friends-main"></div>
         </div>
         <div className="friends_catalog_mom">
           <div className="friends_catalog_son">
             <div className="friends_catalog">
-              <div></div>
               <img
                 src={porfileImg}
                 className="freinds_catalog_pic"
@@ -43,18 +59,17 @@ const FriendsModal = ({ isOpen, handleClose }) => {
             </div>
           </div>
         </div>
-        <button onClick={handleClose} className="modal-close-button">
+        <button onClick={handleModalClose} className="modal-close-button">
           Close
         </button>
       </div>
 
-      {/* AddFriends 모달을 렌더링 */}
       <AddFriends
         isOpen={isAddFriendsOpen}
         handleClose={handleAddFriendsClose}
       />
     </div>
-  );
+  ) : null;
 };
 
 export default FriendsModal;
