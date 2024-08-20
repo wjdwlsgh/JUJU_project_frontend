@@ -44,16 +44,20 @@ const Main = ({ profilePicture, nickname }) => {
   };
 
   const goToSetting = () => {
-    navigate("/api/setting");
+    navigate("/api/settingPage");
+  };
+
+  const goToPractice = () => {
+    navigate("/api/Practice");
   };
 
   return (
     <div className="Mainbody">
       <div className="menu_wrapper">
         <div className="left_container1">
-          <div className="setting-icon-div">
+          {/* <div className="setting-icon-div">
             <Home />
-          </div>
+          </div> */}
 
           <div className="profile-info">
             <img
@@ -78,16 +82,15 @@ const Main = ({ profilePicture, nickname }) => {
           <div className="left_container2_baby" onClick={goToArticle}>
             일기 페이지
           </div>
-          <div className="left_container2_baby">친구 목록</div>
-          <div className="left_container2_baby">일기 쓰기</div>
-          <div className="left_container2_baby">일기 페이지</div>
           <div
             className="left_container2_baby"
             onClick={handleOpenFriendsModal}
           >
             친구 목록
           </div>
-          <div className="left_container2_baby">설정</div>
+          <div className="left_container2_baby" onClick={goToSetting}>
+            설정
+          </div>
         </div>
       </div>
 
