@@ -10,6 +10,7 @@ import FriendsModal from "../../friends/friendsModal";
 import { IoPeople } from "react-icons/io5";
 import { TbCategoryPlus } from "react-icons/tb";
 import { FaPenAlt } from "react-icons/fa";
+import LoginModal from "../login_kakao_ver/LoginModal";
 
 const Main = ({ profilePicture, nickname }) => {
   const [currentProfilePicture, setCurrentProfilePicture] = useState(() => {
@@ -17,6 +18,7 @@ const Main = ({ profilePicture, nickname }) => {
   });
 
   const [isFriendsModalOpen, setFriendsModalOpen] = useState(false); // State for FriendsModal
+  const [isLoginModalOpen, setLoginModalOpen] = useState(false); // State for FriendsModal
 
   const navigate = useNavigate();
 
@@ -36,6 +38,14 @@ const Main = ({ profilePicture, nickname }) => {
 
   const handleCloseFriendsModal = () => {
     setFriendsModalOpen(false);
+  };
+
+  const handleOpenLoginModal = () => {
+    setLoginModalOpen(true);
+  };
+
+  const handleCloseLoginModal = () => {
+    setLoginModalOpen(false);
   };
 
   const goTosettiong = () => {
@@ -86,7 +96,9 @@ const Main = ({ profilePicture, nickname }) => {
                   {" "}
                   설정
                 </span>
-                <div className="left_container2_logout">로그아웃</div>
+                <div className="left_container2_logout" onClick={handleOpenLoginModal}>
+                  로그아웃
+                </div>
               </div>
             </div>
           </div>
@@ -97,10 +109,8 @@ const Main = ({ profilePicture, nickname }) => {
         </main>
 
         {/* Friends Modal */}
-        <FriendsModal
-          isOpen={isFriendsModalOpen}
-          handleClose={handleCloseFriendsModal}
-        />
+        <FriendsModal isOpen={isFriendsModalOpen} handleClose={handleCloseFriendsModal} />
+        <LoginModal isOpen={isLoginModalOpen} onClose={handleCloseLoginModal} />
       </div>
     </div>
   );

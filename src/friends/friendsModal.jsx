@@ -35,8 +35,7 @@ const FriendsModal = ({ isOpen, handleClose }) => {
   return shouldRender ? (
     <div
       className={`freinds-modal-overlay ${!isOpen ? "fade-out" : ""}`}
-      onAnimationEnd={handleAnimationEnd}
-    >
+      onAnimationEnd={handleAnimationEnd}>
       <div className="freinds-modal-content">
         <div className="friends_title_mom">
           <div className="friends_title_baby1">친구 관리</div>
@@ -47,12 +46,7 @@ const FriendsModal = ({ isOpen, handleClose }) => {
         <div className="friends_catalog_mom">
           <div className="friends_catalog_son">
             <div className="friends_catalog">
-              <img
-                src={porfileImg}
-                className="freinds_catalog_pic"
-                alt="프로필"
-              />{" "}
-              이름
+              <img src={porfileImg} className="freinds_catalog_pic" alt="프로필" /> 이름
             </div>
             <div className="friends_catalog_button">
               <button>프로필</button>
@@ -63,11 +57,7 @@ const FriendsModal = ({ isOpen, handleClose }) => {
           Close
         </button>
       </div>
-
-      <AddFriends
-        isOpen={isAddFriendsOpen}
-        handleClose={handleAddFriendsClose}
-      />
+      <AddFriends isOpen={isAddFriendsOpen} handleClose={handleAddFriendsClose} />
     </div>
   ) : null;
 };

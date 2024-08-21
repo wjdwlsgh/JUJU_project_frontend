@@ -1,21 +1,17 @@
 import React, { useState } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 import Main from "./pages/main/Main";
-import Login from "./pages/Login/Login";
-import Find from "./pages/Login/Find";
-import AccountForm from "./pages/main/account/AccountForm";
+// import Login from "./pages/Login/Login";
+// import Find from "./pages/Login/Find";
+// import AccountForm from "./pages/main/account/AccountForm";
 import SettingPage from "./pages/main/SettingPage";
 import mainImage from "./assets/imgs/main.png";
 import { ToastContainer } from "react-toastify"; // ToastContainer 임포트
 import "react-toastify/dist/ReactToastify.css"; // Toast 스타일 임포트
-import Diary from "./pages/Diary/Diary";
-import Article from "./pages/Article/Article";
+import Diary from "./pages/diary/Diary";
+import Article from "./pages/article/Article";
+// import AutoRedirectHandeler from "./pages/login_kakao_ver/AuthRedirectHandeler";
 
 function App() {
   const [profilePicture, setProfilePicture] = useState(
@@ -28,7 +24,7 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Route
+          {/* <Route
             path="/"
             element={
               <Login
@@ -36,15 +32,10 @@ function App() {
                 setProfilePicture={setProfilePicture}
               />
             }
-          />
-          <Route
-            path="/api/Main"
-            element={
-              <Main profilePicture={profilePicture} nickname={nickname} />
-            }
-          />
-          <Route path="/api/Find" element={<Find />} />
-          <Route path="/api/Account" element={<AccountForm />} />
+          /> */}
+          <Route path="/" element={<Main profilePicture={profilePicture} nickname={nickname} />} />
+          {/* <Route path="/api/Find" element={<Find />} /> */}
+          {/* <Route path="/api/Account" element={<AccountForm />} /> */}
           <Route
             path="/api/SettingPage"
             element={
@@ -59,6 +50,7 @@ function App() {
           <Route path="*" element={<Navigate to="/" replace />} />
           <Route path="/api/Diary" element={<Diary />} />
           <Route path="/api/Article" element={<Article />} />
+          {/* <Route path="/login" element={<AutoRedirectHandeler />} /> */}
         </Routes>
         <ToastContainer /> {/* ToastContainer 추가 */}
       </Router>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "../friends/addFriends.css";
+import "./addFriends.css";
 
 const AddFriends = ({ isOpen, handleClose }) => {
   const [code, setCode] = useState("");
