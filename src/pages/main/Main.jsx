@@ -97,7 +97,7 @@ const Main = ({ profilePicture, nickname }) => {
                   설정
                 </span>
                 <div className="left_container2_logout" onClick={handleOpenLoginModal}>
-                  로그아웃
+                  로그인
                 </div>
               </div>
             </div>

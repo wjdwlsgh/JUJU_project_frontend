@@ -172,6 +172,7 @@ header {
   margin-right: 10%;
   margin-top: 30%;
   height: 30%;
+  cursor: pointer;
 }
 
 .mainCategory {
